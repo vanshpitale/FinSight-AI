@@ -1,4 +1,4 @@
-import { tr } from "zod/v4/locales";
+
 import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
 import { calculateNextOccurance } from "../utils/helper";
 import { CreateTransactionType } from "../validators/transaction.validator";
@@ -80,7 +80,7 @@ export const getAllTransactionService = async (
 
     return {
         transactions,
-        pagination:{
+        pagination: {
             pageSize,
             pageNumber,
             totalCount,
@@ -95,7 +95,29 @@ export const getTransactionByIdService = async (userId: string, transactionId: s
         _id: transactionId,
         userId,
     });
-    if(!transaction) throw new NotFoundException("Transaction Not Found");
+    if (!transaction) throw new NotFoundException("Transaction Not Found");
 
     return transaction;
+}
+
+export const duplicateTransactionService = async (userId: string, transactionId: string) => {
+    const transaction = await TransactionModel.findOne({
+        _id: transactionId,
+        userId,
+    });
+    if (!transaction) throw new NotFoundException("Transaction Not Found");
+
+    const duplicated = await TransactionModel.create({
+        ... transaction.toObject(),
+        _id: undefined,
+        title: `Duplicate - ${transaction.title}`,
+        description: transaction.description ? `${transaction.description} (duplicate)` : "Duplicated Transaction",
+        isRecurring: false,
+        recurringInterval: undefined,
+        nextRecurringDate: undefined,
+        createdAt: undefined,
+        updatedAt: undefined,
+    })
+
+    return duplicated;
 }

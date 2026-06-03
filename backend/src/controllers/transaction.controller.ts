@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { asyncHandler } from "../middlewares/asyncHandler.middleware";
 import { HTTPSTATUS } from "../config/http.config";
 import { createTransactionSchema, transactionIdSchema } from "../validators/transaction.validator";
-import { createTransactionService, getAllTransactionService, getTransactionByIdService } from "../services/transaction.service";
+import { createTransactionService, duplicateTransactionService, getAllTransactionService, getTransactionByIdService } from "../services/transaction.service";
 import { TransactionTypeEnum } from "../models/transaction.model";
 
 
@@ -49,6 +49,19 @@ export const getTransactionByIdController = asyncHandler(async (req: Request, re
         message: "Transaction fetched Successfully",
         transaction
 
+    })
+
+});
+
+export const duplicateTransactionController = asyncHandler(async (req: Request, res: Response) => {
+    const userId = req.user?._id;
+    const transactionId = transactionIdSchema.parse(req.params.id);
+
+    const transaction = await duplicateTransactionService(userId, transactionId)
+
+    return res.status(HTTPSTATUS.OK).json({
+        message: "Transaction duplicated Successfully",
+        data: transaction,
     })
 
 });
