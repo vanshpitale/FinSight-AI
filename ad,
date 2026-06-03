@@ -1,0 +1,101 @@
+[33mcommit d47cd64eac5ce9f29098801ebbb0e4f4a1d0244a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/auth[m[33m)[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Wed Jun 3 11:39:18 2026 +0530
+
+    feat: implement the update transaction api
+
+[33mcommit 370350404be363a22848533de95c2872c2b027dd[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Wed Jun 3 10:53:27 2026 +0530
+
+    feat: implement the duplicate transaction api
+
+[33mcommit 83fe5d41023444d5a8bd77c7c2227c34c1ca4f78[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Wed Jun 3 10:38:30 2026 +0530
+
+    feat: implement the get transaction by Id api
+
+[33mcommit c46086a8cb11ac871daf7eea4e74ce799b4f302c[m[33m ([m[1;31morigin/feature/auth[m[33m)[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 23:59:52 2026 +0530
+
+    feat: implement fetch all transactions api
+
+[33mcommit 5cdb0c98b452798b29f55413d1a12d2870ba6bcd[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 23:12:56 2026 +0530
+
+    feat: implement create transaction api
+
+[33mcommit d7cddfe6442eced9e390e311ff517a208689fd16[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 22:00:41 2026 +0530
+
+    feat: implement transaction validator
+
+[33mcommit 8d7a77361eb5fb79bb33ba793da7b2bbac48a3fd[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 15:51:44 2026 +0530
+
+    feat: implement the passport & current user api
+
+[33mcommit 418d55de3debe1267fcf6f283e4fbf8f44a4c56d[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 15:15:04 2026 +0530
+
+    feat: implement the login api
+
+[33mcommit 6fad632f7d7a25a21f3c122fc3ee5b2f4e4cd76c[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 10:00:15 2026 +0530
+
+    feat: implemented the Register API
+
+[33mcommit e3b4d81a0e7280551edcef14a8508e2bbe9f388d[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 07:35:09 2026 +0530
+
+    feat: implemented the reportSetting model
+
+[33mcommit 294973bd6ce254ab40153b7a29f5493f21fd7901[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 07:30:47 2026 +0530
+
+    feat: implemented the report model
+
+[33mcommit 59624f43997127ea4842b83509e5d22a4ae9019f[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Tue Jun 2 07:24:52 2026 +0530
+
+    feat: implemented the transaction model
+
+[33mcommit e667bbb625cba9c192f3fb3f06d3c143b4d70596[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Mon Jun 1 23:57:36 2026 +0530
+
+    feat: implemented the user model
+
+[33mcommit 0ce9fa1dc97ec8c5184281395ca0057db10ed98d[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Mon Jun 1 23:28:43 2026 +0530
+
+    feat: Database config setup done
+
+[33mcommit 5990e36510c4076a36218a6b61604ef67f962948[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Mon Jun 1 22:58:28 2026 +0530
+
+    feat: implement global error and exception handling
+
+[33mcommit 28b7e9616471c6f7b8b63aa1a07e14bbd24718e7[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Sat May 30 21:17:21 2026 +0530
+
+    Project Setup And Structure Done
+
+[33mcommit 8f1cc234aa3d81746a3aaf24e43e3c33deeb2c86[m
+Author: vanshpitale <vanssh24@gmail.com>
+Date:   Sat May 30 16:49:00 2026 +0530
+
+    chore: initialize project structure

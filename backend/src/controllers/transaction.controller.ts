@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { asyncHandler } from "../middlewares/asyncHandler.middleware";
 import { HTTPSTATUS } from "../config/http.config";
 import { createTransactionSchema, transactionIdSchema, updateTransactionSchema } from "../validators/transaction.validator";
-import { createTransactionService, duplicateTransactionService, getAllTransactionService, getTransactionByIdService, updateTransactionService } from "../services/transaction.service";
+import { createTransactionService, deleteTransactionService, duplicateTransactionService, getAllTransactionService, getTransactionByIdService, updateTransactionService } from "../services/transaction.service";
 import { TransactionTypeEnum } from "../models/transaction.model";
 
 
@@ -74,5 +74,16 @@ export const updateTransactionController = asyncHandler(async (req: Request, res
 
     return res.status(HTTPSTATUS.OK).json({
         message: "Transaction updated Successfully",
+    })
+});
+
+export const deleteTransactionController = asyncHandler(async (req: Request, res: Response) => {
+    const userId = req.user?._id;
+    const transactionId = transactionIdSchema.parse(req.params.id);
+
+    await deleteTransactionService(userId, transactionId);
+
+    return res.status(HTTPSTATUS.OK).json({
+        message: "Transaction deleted Successfully",
     })
 });
