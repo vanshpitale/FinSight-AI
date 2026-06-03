@@ -1,7 +1,7 @@
 
 import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
 import { calculateNextOccurance } from "../utils/helper";
-import { CreateTransactionType } from "../validators/transaction.validator";
+import { CreateTransactionType, UpdateTransactionType } from "../validators/transaction.validator";
 import { NotFoundException } from "../utils/app-error";
 
 export const createTransactionService = async (body: CreateTransactionType, userId: string) => {
@@ -108,7 +108,7 @@ export const duplicateTransactionService = async (userId: string, transactionId:
     if (!transaction) throw new NotFoundException("Transaction Not Found");
 
     const duplicated = await TransactionModel.create({
-        ... transaction.toObject(),
+        ...transaction.toObject(),
         _id: undefined,
         title: `Duplicate - ${transaction.title}`,
         description: transaction.description ? `${transaction.description} (duplicate)` : "Duplicated Transaction",
@@ -120,4 +120,43 @@ export const duplicateTransactionService = async (userId: string, transactionId:
     })
 
     return duplicated;
-}
+};
+
+export const updateTransactionService = async (userId: string, transactionId: string, body: UpdateTransactionType) => {
+    const existingTransaction = await TransactionModel.findOne({
+        _id: transactionId,
+        userId,
+    });
+    if (!existingTransaction) throw new NotFoundException("Transaction Not Found");
+
+    const now = new Date();
+    const isRecurring = body.isRecurring ?? existingTransaction.isRecurring
+
+    const date = body.date !== undefined ? new Date(body.date) : existingTransaction.date;
+
+    const recurringInterval = body.recurringInterval || existingTransaction.recurringInterval;
+
+    let nextRecurringDate: Date | undefined;
+
+    if (isRecurring && recurringInterval) {
+        const calculatedDate = calculateNextOccurance(date, recurringInterval);
+        nextRecurringDate = calculatedDate < now ? calculateNextOccurance(now, recurringInterval) : calculatedDate;
+    }
+
+    existingTransaction.set({
+        ... (body.title && { title: body.title }),
+        ... (body.description && { description: body.description }),
+        ... (body.category && { category: body.category }),
+        ... (body.type && { type: body.type }),
+        ... (body.paymentMethod && { paymentMethod: body.paymentMethod }),
+        ... (body.amount !== undefined && { amount: Number(body.amount) }),
+        date,
+        isRecurring,
+        recurringInterval,
+        nextRecurringDate,
+    });
+
+    await existingTransaction.save();
+
+    return;
+};

@@ -29,19 +29,19 @@ export enum PaymentMethodEnum {
 
 export interface TransactionDocument extends mongoose.Document {
     userId: mongoose.Types.ObjectId;
-    type: keyof typeof TransactionTypeEnum;
     title: string;
+    type: keyof typeof TransactionTypeEnum;
     amount: number;
+    description?: string;
     category: string;
-    receiptUrl?: string;
+    date: Date;
+    isRecurring: boolean;
     recurringInterval?: keyof typeof RecurringIntervalEnum | null;
     nextRecurringDate?: Date;
     lastProcessed?: Date | null;
-    isRecurring: boolean;
-    description?: string;
-    date: Date;
     status: keyof typeof TransactionStatusEnum;
     paymentMethod: keyof typeof PaymentMethodEnum;
+    receiptUrl?: string;
     createdAt: Date;
     updatedAt: Date;
 }
