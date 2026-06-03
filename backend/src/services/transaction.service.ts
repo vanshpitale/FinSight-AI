@@ -2,6 +2,7 @@ import { tr } from "zod/v4/locales";
 import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
 import { calculateNextOccurance } from "../utils/helper";
 import { CreateTransactionType } from "../validators/transaction.validator";
+import { NotFoundException } from "../utils/app-error";
 
 export const createTransactionService = async (body: CreateTransactionType, userId: string) => {
     // Service logic to create a transaction
@@ -88,3 +89,13 @@ export const getAllTransactionService = async (
         }
     }
 };
+
+export const getTransactionByIdService = async (userId: string, transactionId: string) => {
+    const transaction = await TransactionModel.findOne({
+        _id: transactionId,
+        userId,
+    });
+    if(!transaction) throw new NotFoundException("Transaction Not Found");
+
+    return transaction;
+}
