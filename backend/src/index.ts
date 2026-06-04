@@ -13,6 +13,7 @@ import authRoutes from "./routes/auth.route";
 import { passportAuthenticateJwt } from "./config/passport.config";
 import userRoutes from "./routes/user.route";
 import transactionRoutes from "./routes/transaction.route";
+import { initializeCrons } from "./crons";
 
 const app = express();
 const BASE_PATH = Env.BASE_PATH;
@@ -44,5 +45,10 @@ app.use(errorHandler);
 
 app.listen(Env.PORT, async () => {
     await connectDB();
+
+    if(Env.NODE_ENV === "development") {
+        await initializeCrons();
+    }
+
     console.log(`Server is running on port ${Env.PORT} in ${Env.NODE_ENV} mode`);
 });

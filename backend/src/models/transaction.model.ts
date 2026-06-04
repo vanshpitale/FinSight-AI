@@ -37,7 +37,7 @@ export interface TransactionDocument extends mongoose.Document {
     date: Date;
     isRecurring: boolean;
     recurringInterval?: keyof typeof RecurringIntervalEnum | null;
-    nextRecurringDate?: Date;
+    nextRecurringDate?: Date | null;
     lastProcessed?: Date | null;
     status: keyof typeof TransactionStatusEnum;
     paymentMethod: keyof typeof PaymentMethodEnum;
