@@ -1,8 +1,12 @@
 
 import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
 import { calculateNextOccurance } from "../utils/helper";
-import { BulkDeleteTransactionType, CreateTransactionType, UpdateTransactionType } from "../validators/transaction.validator";
-import { NotFoundException } from "../utils/app-error";
+import { CreateTransactionType, UpdateTransactionType } from "../validators/transaction.validator";
+import { BadRequestException, NotFoundException } from "../utils/app-error";
+import axios from "axios";
+import { genAI, genAIModel } from "../config/google-ai.config";
+import { createPartFromBase64, createUserContent } from "@google/genai";
+import { receiptPrompt } from "../utils/prompt";
 
 export const createTransactionService = async (body: CreateTransactionType, userId: string) => {
     // Service logic to create a transaction
@@ -168,7 +172,7 @@ export const deleteTransactionService = async (userId: string, transactionId: st
     });
     if (!deleted) throw new NotFoundException("Transaction Not Found");
 
-    return ;
+    return;
 };
 
 export const bulkDeleteTransactionService = async (userId: string, transactionIds: string[]) => {
@@ -177,7 +181,7 @@ export const bulkDeleteTransactionService = async (userId: string, transactionId
         userId,
     });
 
-    if(result.deletedCount === 0) throw new NotFoundException("No Transaction Found");
+    if (result.deletedCount === 0) throw new NotFoundException("No Transaction Found");
 
     return {
         success: true,
@@ -214,3 +218,60 @@ export const bulkTransactionService = async (userId: string, transactions: Creat
         throw error;
     }
 };
+
+export const scanReceiptService = async (file: Express.Multer.File | undefined) => {
+    if(!file) throw new BadRequestException("No file uploaded");
+
+    try {
+        if(!file.path) throw new BadRequestException("failed to upload file");
+
+        console.log(file.path);
+
+        const responseData = await axios.get(file.path, {
+            responseType: 'arraybuffer'
+        });
+        const base64String = Buffer.from(responseData.data).
+        toString("base64");
+
+        if(!base64String) throw new BadRequestException("Could not Process file");
+
+        const result = await genAI.models.generateContent({
+            model: genAIModel,
+            contents: [
+                createUserContent([
+                    receiptPrompt,
+                    createPartFromBase64(base64String, file.mimetype),
+                ]),
+            ],
+            config: {
+                temperature: 0,
+                topP: 1,
+                responseMimeType: "application/json",
+            },
+        });
+
+        const response = result.text;
+        const cleanedText = response?.replace(/```(?:json)?\n?/g, "").trim();
+
+        if(!cleanedText) return { error: "Could notread receipt content" };
+
+        const data = JSON.parse(cleanedText);
+
+        if(!data.amount || !data.date) {
+            return { error: "Receipt missing required information" };
+        }
+
+        return {
+            title: data.title || "Receipt",
+            amount: data.amount,
+            date: data.date,
+            description: data.description,
+            category: data.category,
+            paymentMethod: data.paymentMethod,
+            type: data.type,
+            receiptUrl: file.path,
+        };
+    } catch (error) {
+        return { error: "Receipt scanning service unavailable" };
+    }
+}
