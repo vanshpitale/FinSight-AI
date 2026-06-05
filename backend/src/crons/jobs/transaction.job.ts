@@ -61,6 +61,11 @@ export const processRecurringTransactions = async () => {
             failedCount,
         };
     } catch (error) {
+        console.log("Error occur processing transaction", error);
 
+        return {
+            success: false,
+            error: error
+        };
     }
 };
