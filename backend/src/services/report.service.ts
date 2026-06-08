@@ -58,6 +58,8 @@ export const updateReportSettingService = async (userId: string, body: UpdateRep
         }
     }
 
+    console.log(nextReportDate, "Next Report Date")
+
     existingReportSetting.set({
         ...body,
         nextReportDate,
@@ -153,7 +155,7 @@ export const generateReportService = async (userId: string, fromDate: Date, toDa
         period: periodLabel,
         summary: {
             income: totalIncome,
-            expenses: totalExpense,
+            expense: totalExpense,
             balance: availableBalance,
             savingsRate: Number(savingsRate.toFixed(1)),
             topCategories: Object.entries(byCategory)?.map(([name, cat]: any) => ({
