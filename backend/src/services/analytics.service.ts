@@ -1,0 +1,245 @@
+import mongoose from "mongoose";
+import { DateRangeEnum, DateRangePreset } from "../enums/date-range.enum"
+import { getDateRange } from "../utils/date";
+import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
+import { differenceInDays, subDays, subYears } from "date-fns";
+
+export const summaryAnalyticsService = async (
+    userId: string,
+    dateRangePreset?: DateRangePreset,
+    customFrom?: Date,
+    customTo?: Date,
+) => {
+    const range = getDateRange(dateRangePreset, customFrom, customTo);
+
+    const { from, to, value: rangeValue } = range;
+
+    const currentPeriodPipeline: any[] = [
+        {
+            $match: {
+                userId: new mongoose.Types.ObjectId(userId),
+                ...(from && to && {
+                    date: {
+                        $gte: from,
+                        $lte: to,
+                    },
+                }),
+            },
+        },
+        {
+            $group: {
+                _id: null,
+                totalIncome: {
+                    $sum: {
+                        $cond: [
+                            { $eq: ['$type', TransactionTypeEnum.INCOME] },
+                            { $abs: "$amount" },
+                            0,
+                        ],
+                    },
+                },
+                totalExpense: {
+                    $sum: {
+                        $cond: [
+                            { $eq: ['$type', TransactionTypeEnum.EXPENSE] },
+                            { $abs: "$amount" },
+                            0,
+                        ],
+                    },
+                },
+                transactionCount: { $sum: 1 },
+            },
+        },
+        {
+            $project: {
+                _id: 0,
+                totalIncome: 1,
+                totalExpense: 1,
+                transactionCount: 1,
+
+                availableBalance: { $subtract: ["$totalIncome", "$totalExpense"] },
+
+                savingsData: {
+                    $let: {
+                        vars: {
+                            income: { $ifNull: ["$totalIncome", 0] },
+                            expense: { $ifNull: ["$totalExpense", 0] },
+                        },
+                        in: {
+                            // const savingRate = ((totalIncome - totalExpense) / totalIncome) * 100;
+                            savingsPercentage: {
+                                $cond: [
+                                    { $lte: ["$$income", 0] },
+                                    0,
+                                    {
+                                        $multiply: [
+                                            {
+                                                $divide: [
+                                                    {
+                                                        $subtract: ["$$income", "$$expense"],
+                                                    },
+                                                    "$$income",
+                                                ],
+                                            },
+                                            100,
+                                        ],
+                                    },
+                                ],
+                            },
+
+                            // Expense Ratio = (expenses / income) * 100
+                            expenseRatio: {
+                                $cond: [
+                                    { $lte: ["$$income", 0] },
+                                    0,
+                                    {
+                                        $multiply: [
+                                            {
+                                                $divide: ["$$expense", "$$income"],
+                                            },
+                                            100,
+                                        ],
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    ];
+
+    const [current] = await TransactionModel.aggregate(currentPeriodPipeline);
+    const {
+        totalIncome = 0,
+        totalExpense = 0,
+        availableBalance = 0,
+        transactionCount = 0,
+        savingsData = {
+            expenseRatio: 0,
+            savingsPercentage: 0,
+        },
+    } = current || {};
+
+    let percentageChange: any = {
+        income: 0,
+        expense: 0,
+        balance: 0,
+        prevPeriodFrom: null,
+        prevPeriodTo: null,
+        previousValues: {
+            incomeAmount: 0,
+            expenseAmount: 0,
+            balanceAmount: 0,
+        },
+    };
+
+    if (from && to && rangeValue !== DateRangeEnum.ALL_TIME) {
+        //last 30 days  previous las 30 days,
+
+        const period = differenceInDays(to, from) + 1;
+        console.log(`${differenceInDays(to, from)}`, period, "period");
+
+        const isYearly = [
+            DateRangeEnum.LAST_YEAR,
+            DateRangeEnum.THIS_YEAR,
+        ].includes(rangeValue);
+
+        const prevPeriodFrom = isYearly ? subYears(from, 1) : subDays(from, period);
+
+        const prevPeriodTo = isYearly ? subYears(to, 1) : subDays(to, period);
+        console.log(prevPeriodFrom, prevPeriodTo, "Prev date");
+
+        const prevPeriodPipeline = [
+            {
+                $match: {
+                    userId: new mongoose.Types.ObjectId(userId),
+                    date: {
+                        $gte: prevPeriodFrom,
+                        $lte: prevPeriodTo,
+                    },
+                },
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalIncome: {
+                        $sum: {
+                            $cond: [
+                                { $eq: ["$type", TransactionTypeEnum.INCOME] },
+                                { $abs: "$amount" },
+                                0,
+                            ],
+                        },
+                    },
+                    totalExpense: {
+                        $sum: {
+                            $cond: [
+                                { $eq: ["$type", TransactionTypeEnum.EXPENSE] },
+                                { $abs: "$amount" },
+                                0,
+                            ],
+                        },
+                    },
+                },
+            },
+        ];
+
+        const [previous] = await TransactionModel.aggregate(prevPeriodPipeline);
+
+        console.log(previous, "Previous Data");
+        if (previous) {
+            const prevIncome = previous.totalIncome || 0;
+            const prevExpense = previous.totalExpense || 0;
+            const prevBalance = prevIncome - prevExpense;
+
+            const currentIncome = totalIncome;
+            const currentExpense = totalExpense;
+            const currentBalance = availableBalance;
+
+            percentageChange = {
+                income: calaulatePercentageChange(prevIncome, currentIncome),
+                expense: calaulatePercentageChange(prevExpense, currentExpense),
+                balance: calaulatePercentageChange(prevBalance, currentBalance),
+                prevPeriodFrom: prevPeriodFrom,
+                prevPeriodTo: prevPeriodTo,
+                previousValues: {
+                    incomeAmount: prevIncome,
+                    expenseAmount: prevExpense,
+                    balanceAmount: prevBalance,
+                },
+            };
+        }
+    }
+
+    return {
+        availableBalance: availableBalance,
+        totalIncome: totalIncome,
+        totalExpense: totalExpense,
+        savingRate: {
+            percentage: parseFloat(savingsData.savingsPercentage.toFixed(2)),
+            expenseRatio: parseFloat(savingsData.expenseRatio.toFixed(2)),
+        },
+        transactionCount,
+        percentageChange: {
+            ...percentageChange,
+            previousValues: {
+                incomeAmount: percentageChange.previousValues.incomeAmount,
+                expenseAmount: percentageChange.previousValues.expenseAmount,
+                balanceAmount: percentageChange.previousValues.balanceAmount,
+            },
+        },
+        preset: {
+            ...range,
+            value: rangeValue || DateRangeEnum.ALL_TIME,
+            label: range?.label || "All Time",
+        },
+    };
+};
+
+function calaulatePercentageChange(previous: number, current: number) {
+    if (previous === 0) return current === 0 ? 0 : 100;
+    const changes = ((current - previous) / Math.abs(previous)) * 100;
+    const cappedChange = Math.min(Math.max(changes, -100), 100);
+    return parseFloat(cappedChange.toFixed(2));
+}
