@@ -1,5 +1,5 @@
 import { Dialog, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { DialogContent,DialogDescription } from "@/components/ui/dialog";
+import { DialogContent, DialogDescription } from "@/components/ui/dialog";
 import { Loader } from "lucide-react";
 import { Button } from "../ui/button";
 import { useTransition } from "react";
@@ -46,4 +46,4 @@ const LogoutDialog = ({ isOpen, setIsOpen }: LogoutDialogProps) => {
     )
 }
 
-export default LogoutDialog
+export default LogoutDialog;
