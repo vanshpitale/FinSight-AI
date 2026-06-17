@@ -60,29 +60,29 @@ export default function PricingSection() {
   const navigate = useNavigate();
 
   return (
-    <section id="pricing" className="py-24 bg-white dark:bg-zinc-900/40 relative">
+    <section id="pricing" className="py-24 bg-background relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-6">
-          <h2 className="text-xs font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+          <h2 className="text-xs font-semibold tracking-wider text-secondary-base uppercase">
             Flexible Pricing
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
             A plan designed for every net worth
           </p>
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
+          <p className="text-base text-muted-foreground">
             Select a pricing plan that fits your current goals. Upgrade or downgrade at any time.
           </p>
 
           {/* Toggle Button */}
-          <div className="inline-flex items-center gap-2 bg-zinc-100 dark:bg-zinc-800 p-1 rounded-full border border-zinc-200/60 dark:border-zinc-700/50">
+          <div className="inline-flex items-center gap-2 bg-muted p-1 rounded-full border border-border">
             <button
               onClick={() => setBillingPeriod("monthly")}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
                 billingPeriod === "monthly"
-                  ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 shadow-sm"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300"
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Monthly
@@ -91,12 +91,12 @@ export default function PricingSection() {
               onClick={() => setBillingPeriod("yearly")}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 billingPeriod === "yearly"
-                  ? "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 shadow-sm"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300"
+                  ? "bg-card text-foreground shadow-sm"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Yearly
-              <span className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full text-[9px] font-bold">
+              <span className="bg-secondary-base/10 text-secondary-base px-2 py-0.5 rounded-full text-[9px] font-bold">
                 Save 20%
               </span>
             </button>
@@ -113,13 +113,13 @@ export default function PricingSection() {
                 key={idx}
                 className={`relative flex flex-col justify-between p-8 rounded-3xl border transition-all duration-300 ${
                   tier.popular
-                    ? "bg-zinc-900 dark:bg-zinc-950 text-white border-zinc-900 dark:border-zinc-850 shadow-xl scale-105 md:scale-105 z-10"
-                    : "bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 border-zinc-200/80 dark:border-zinc-800 shadow-sm hover:border-zinc-300"
+                    ? "bg-primary-base text-white border-secondary-base shadow-xl scale-105 md:scale-105 z-10"
+                    : "bg-card text-foreground border-border shadow-sm hover:border-secondary-base/50"
                 }`}
               >
                 {/* Popular Tier Badge */}
                 {tier.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-1">
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-secondary-base to-tertiary-base text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-1">
                     <Sparkles className="h-3 w-3" /> Most Popular
                   </span>
                 )}
@@ -127,7 +127,7 @@ export default function PricingSection() {
                 {/* Plan Metadata */}
                 <div>
                   <h3 className="text-xl font-bold">{tier.name}</h3>
-                  <p className={`text-xs mt-2 leading-relaxed ${tier.popular ? "text-zinc-400" : "text-zinc-500"}`}>
+                  <p className={`text-xs mt-2 leading-relaxed ${tier.popular ? "text-neutral-base/70" : "text-muted-foreground"}`}>
                     {tier.description}
                   </p>
 
@@ -136,25 +136,25 @@ export default function PricingSection() {
                     <span className="text-4xl font-extrabold tracking-tight">
                       ₹{price}
                     </span>
-                    <span className={`text-xs ml-1 ${tier.popular ? "text-zinc-400" : "text-zinc-500"}`}>
+                    <span className={`text-xs ml-1 ${tier.popular ? "text-neutral-base/70" : "text-muted-foreground"}`}>
                       / month
                     </span>
                   </div>
                   {billingPeriod === "yearly" && price > 0 && (
-                    <div className="text-[10px] mt-1 text-emerald-500 font-semibold">
+                    <div className="text-[10px] mt-1 text-secondary-base font-semibold">
                       Billed annually (₹{price * 12}/yr)
                     </div>
                   )}
 
                   {/* Divider */}
-                  <div className={`my-6 border-t ${tier.popular ? "border-zinc-800" : "border-zinc-100 dark:border-zinc-800"}`} />
+                  <div className={`my-6 border-t ${tier.popular ? "border-neutral-base/10" : "border-border"}`} />
 
                   {/* Features List */}
                   <ul className="space-y-3">
                     {tier.features.map((feat, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-2 text-xs">
-                        <Check className={`h-4 w-4 shrink-0 ${tier.popular ? "text-emerald-400" : "text-emerald-600"}`} />
-                        <span className={tier.popular ? "text-zinc-300" : "text-zinc-600 dark:text-zinc-400"}>
+                        <Check className={`h-4 w-4 shrink-0 ${tier.popular ? "text-tertiary-base" : "text-secondary-base"}`} />
+                        <span className={tier.popular ? "text-neutral-base/90" : "text-muted-foreground"}>
                           {feat}
                         </span>
                       </li>
@@ -168,8 +168,8 @@ export default function PricingSection() {
                     onClick={() => navigate(AUTH_ROUTES.SIGN_UP)}
                     className={`w-full py-5 text-xs font-semibold rounded-xl cursor-pointer transition-all duration-300 ${
                       tier.popular
-                        ? "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-500/20"
-                        : "bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200"
+                        ? "bg-secondary-base hover:bg-secondary-base/90 text-white shadow-lg shadow-secondary-base/20 border-0"
+                        : "bg-muted hover:bg-muted/80 text-foreground border-0"
                     }`}
                   >
                     {tier.cta}

@@ -47,7 +47,7 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
     <>
       <aside
         className={cn(
-          "flex flex-col h-screen bg-[#1a1e2a] border-r border-zinc-800 text-white w-64 select-none",
+          "flex flex-col h-screen bg-primary-base border-r border-zinc-800 text-white w-64 select-none",
           className
         )}
       >
@@ -81,7 +81,7 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
                 variant="ghost"
                 className={cn(
                   "w-full font-medium py-6 px-4 hover:bg-white/5 hover:text-white border-none transition justify-start !bg-transparent text-white/60 !text-[14.5px] cursor-pointer",
-                  isActive && "text-white bg-white/10 hover:bg-white/10 font-semibold border-l-4 border-emerald-500 rounded-l-none pl-3"
+                  isActive && "text-white bg-white/10 hover:bg-white/10 font-semibold border-l-4 border-secondary-base rounded-l-none pl-3"
                 )}
                 onClick={onMobileClose}
                 asChild

@@ -81,22 +81,22 @@ export default function AiInsightsDemo() {
   }, [activeTab]);
 
   return (
-    <section id="demo" className="py-24 bg-zinc-50 dark:bg-zinc-950/40 relative">
+    <section id="demo" className="py-24 bg-background relative">
       {/* Decorative Glows */}
-      <div className="absolute top-1/2 left-10 w-72 h-72 bg-emerald-500/5 blur-3xl rounded-full" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-teal-500/5 blur-3xl rounded-full" />
+      <div className="absolute top-1/2 left-10 w-72 h-72 bg-secondary-base/5 blur-3xl rounded-full" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-tertiary-base/5 blur-3xl rounded-full" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 className="text-xs font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+          <h2 className="text-xs font-semibold tracking-wider text-secondary-base uppercase">
             Artificial Intelligence
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
             Meet your smart financial co-pilot
           </p>
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
+          <p className="text-base text-muted-foreground">
             Ask questions, uncover patterns, and get structured advice to optimize your budgets and investments.
           </p>
         </div>
@@ -106,22 +106,22 @@ export default function AiInsightsDemo() {
           
           {/* Controls / Options Sidebar (Left) */}
           <div className="lg:col-span-4 flex flex-col justify-center gap-3">
-            <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider px-2">
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider px-2">
               Select a Query
             </span>
             <button
               onClick={() => setActiveTab("leakage")}
               className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
                 activeTab === "leakage"
-                  ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/10"
-                  : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               <div className="font-semibold text-sm flex items-center gap-2">
                 <HelpCircle className="h-4 w-4" />
                 Analyze Subscription Leaks
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "leakage" ? "text-emerald-100" : "text-zinc-500"}`}>
+              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "leakage" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
                 Find double bills or inactive streaming profiles.
               </p>
             </button>
@@ -130,15 +130,15 @@ export default function AiInsightsDemo() {
               onClick={() => setActiveTab("vacation")}
               className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
                 activeTab === "vacation"
-                  ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/10"
-                  : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               <div className="font-semibold text-sm flex items-center gap-2">
                 <HelpCircle className="h-4 w-4" />
                 Plan Vacation Savings Goal
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "vacation" ? "text-emerald-100" : "text-zinc-500"}`}>
+              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "vacation" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
                 Calculate timelines and find spending cuts.
               </p>
             </button>
@@ -147,39 +147,39 @@ export default function AiInsightsDemo() {
               onClick={() => setActiveTab("dining")}
               className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
                 activeTab === "dining"
-                  ? "bg-emerald-600 border-emerald-600 text-white shadow-md shadow-emerald-500/10"
-                  : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
+                  : "bg-card border-border text-foreground hover:bg-muted"
               }`}
             >
               <div className="font-semibold text-sm flex items-center gap-2">
                 <HelpCircle className="h-4 w-4" />
                 Explain Spending Spikes
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "dining" ? "text-emerald-100" : "text-zinc-500"}`}>
+              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "dining" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
                 Break down category increases over the past month.
               </p>
             </button>
           </div>
 
           {/* Chat Window (Right) */}
-          <div className="lg:col-span-8 bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 rounded-2xl shadow-xl flex flex-col justify-between overflow-hidden min-h-[460px]">
+          <div className="lg:col-span-8 bg-card border border-border rounded-2xl shadow-xl flex flex-col justify-between overflow-hidden min-h-[460px]">
             {/* Window Header */}
-            <div className="bg-zinc-50 dark:bg-zinc-950 px-6 py-4 border-b border-zinc-200/60 dark:border-zinc-800 flex items-center justify-between">
+            <div className="bg-muted/50 px-6 py-4 border-b border-border flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="bg-emerald-500 text-white p-2 rounded-xl">
+                <div className="bg-secondary-base text-white p-2 rounded-xl">
                   <Brain className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-zinc-900 dark:text-zinc-50">
+                  <h4 className="text-xs font-bold text-foreground">
                     FinSight AI Assistant
                   </h4>
-                  <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  <span className="text-[10px] text-secondary-base font-semibold flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-secondary-base animate-ping" />
                     Online & Analyzing Feeds
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] bg-zinc-200 dark:bg-zinc-800 px-2 py-0.5 rounded text-zinc-600 dark:text-zinc-400 font-mono">
+              <span className="text-[10px] bg-muted px-2 py-0.5 rounded text-muted-foreground font-mono">
                 GPT-4o Finance Core
               </span>
             </div>
@@ -197,8 +197,8 @@ export default function AiInsightsDemo() {
                   <div
                     className={`h-8 w-8 rounded-full flex items-center justify-center text-white shrink-0 ${
                       message.sender === "user"
-                        ? "bg-zinc-500"
-                        : "bg-emerald-500"
+                        ? "bg-muted-foreground"
+                        : "bg-secondary-base"
                     }`}
                   >
                     {message.sender === "user" ? <User className="h-4 w-4" /> : <Brain className="h-4 w-4" />}
@@ -209,8 +209,8 @@ export default function AiInsightsDemo() {
                     <div
                       className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                         message.sender === "user"
-                          ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-tr-none"
-                          : "bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/15 text-zinc-700 dark:text-zinc-300 rounded-tl-none"
+                          ? "bg-muted text-foreground rounded-tr-none"
+                          : "bg-secondary-base/5 dark:bg-secondary-base/10 border border-secondary-base/15 text-foreground rounded-tl-none"
                       }`}
                     >
                       {message.text}
@@ -218,14 +218,14 @@ export default function AiInsightsDemo() {
 
                     {/* Recommendations Block */}
                     {message.recommendations && (
-                      <div className="bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/50 dark:border-zinc-800/80 rounded-xl p-4 space-y-3">
-                        <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wide">
+                      <div className="bg-muted/50 border border-border rounded-xl p-4 space-y-3">
+                        <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">
                           Recommendations
                         </span>
                         <ul className="space-y-2">
                           {message.recommendations.map((rec, k) => (
-                            <li key={k} className="text-xs text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
-                              <CheckCircle className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                            <li key={k} className="text-xs text-muted-foreground flex items-start gap-2">
+                              <CheckCircle className="h-3.5 w-3.5 text-secondary-base shrink-0 mt-0.5" />
                               <span>{rec}</span>
                             </li>
                           ))}
@@ -235,9 +235,9 @@ export default function AiInsightsDemo() {
 
                     {/* Metric Card */}
                     {message.metric && (
-                      <div className="bg-gradient-to-r from-emerald-600 to-teal-500 text-white rounded-xl p-4 shadow-md flex justify-between items-center">
+                      <div className="bg-gradient-to-r from-secondary-base to-tertiary-base text-white rounded-xl p-4 shadow-md flex justify-between items-center">
                         <div>
-                          <div className="text-[10px] text-emerald-100 font-semibold uppercase">
+                          <div className="text-[10px] text-neutral-base/80 font-semibold uppercase">
                             {message.metric.label}
                           </div>
                           <div className="text-2xl font-black mt-0.5">
@@ -256,27 +256,27 @@ export default function AiInsightsDemo() {
               {/* Typing Indicator */}
               {isTyping && (
                 <div className="flex gap-3 mr-auto items-center">
-                  <div className="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center text-white shrink-0">
+                  <div className="h-8 w-8 rounded-full bg-secondary-base flex items-center justify-center text-white shrink-0">
                     <Brain className="h-4 w-4" />
                   </div>
-                  <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-3 rounded-2xl rounded-tl-none flex gap-1 items-center h-9">
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.3s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce [animation-delay:-0.15s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-bounce" />
+                  <div className="bg-muted px-4 py-3 rounded-2xl rounded-tl-none flex gap-1 items-center h-9">
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce" />
                   </div>
                 </div>
               )}
             </div>
 
             {/* Input Bar Mock */}
-            <div className="p-4 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200/60 dark:border-zinc-800 flex gap-2">
+            <div className="p-4 bg-muted/50 border-t border-border flex gap-2">
               <input
                 type="text"
                 disabled
                 placeholder="Ask FinSight AI something..."
-                className="flex-grow bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-4 py-2 rounded-xl text-xs text-zinc-400 cursor-not-allowed"
+                className="flex-grow bg-card border border-border px-4 py-2 rounded-xl text-xs text-muted-foreground cursor-not-allowed"
               />
-              <button disabled className="bg-zinc-200 dark:bg-zinc-800 text-zinc-400 p-2 rounded-xl cursor-not-allowed">
+              <button disabled className="bg-muted text-muted-foreground p-2 rounded-xl cursor-not-allowed">
                 <Send className="h-4 w-4" />
               </button>
             </div>

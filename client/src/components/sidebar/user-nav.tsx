@@ -51,7 +51,7 @@ export function UserNav({
       </DropdownMenuTrigger>
       
       <DropdownMenuContent
-        className="w-56 bg-[#1a1e2a] border-zinc-800 text-white shadow-xl"
+        className="w-56 bg-primary-base border-zinc-800 text-white shadow-xl"
         align="start"
         side="top"
         sideOffset={12}

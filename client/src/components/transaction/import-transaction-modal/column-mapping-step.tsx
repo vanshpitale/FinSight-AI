@@ -111,17 +111,17 @@ const ColumnMappingStep =({
           {csvColumns.map((column) => (
               <TableRow
                 key={column.id}
-                className={column.hasError ? "!bg-red-50" : ""}
+                className={column.hasError ? "!bg-destructive/10" : ""}
               >
                 <TableCell className="pl-6">
                   <div className="flex items-center gap-2">
-                    <FileSpreadsheet className="h-5 w-5 text-green-500" />
+                    <FileSpreadsheet className="h-5 w-5 text-secondary-base" />
                     <span>{column.name}</span>
                   </div>
                 </TableCell>
                 <TableCell className="pl-8">
                   <div className="flex w-full items-center gap-0">
-                    <HelpCircle className="h-5 w-5 mr-2 text-slate-400" />
+                    <HelpCircle className="h-5 w-5 mr-2 text-muted-foreground" />
                    <div className="w-[200px]">
                     <Select
                         value={mappings[column.name] || ""}
@@ -153,7 +153,7 @@ const ColumnMappingStep =({
                               <span className="flex-1 capitalize">
                                 {attr.fieldName}
                                 {attr?.required && (
-                                  <span className="text-red-500"> *</span>
+                                  <span className="text-destructive"> *</span>
                                 )}
                               </span>
                                 {isDisabled && <BanIcon className="currentColor size-4" />}
@@ -163,7 +163,7 @@ const ColumnMappingStep =({
                         </SelectContent>
                       </Select>
                       {errors[column.name] && (
-                          <p className="text-[10px] text-red-500">{errors[column.name]}</p>
+                          <p className="text-[10px] text-destructive">{errors[column.name]}</p>
                         )}
                    </div>
                   </div>

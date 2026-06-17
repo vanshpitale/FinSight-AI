@@ -25,7 +25,7 @@ export default function MarketingNavbar() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50 py-3 shadow-sm"
+          ? "bg-background/80 backdrop-blur-md border-b border-border/50 py-3 shadow-sm"
           : "bg-transparent py-5"
         }`}
     >
@@ -41,28 +41,28 @@ export default function MarketingNavbar() {
             <nav className="flex items-center gap-6">
               <a
                 href="#features"
-                className="text-sm font-medium text-zinc-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-secondary-base transition-colors"
               >
                 Features
               </a>
 
               <a
                 href="#demo"
-                className="text-sm font-medium text-zinc-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-secondary-base transition-colors"
               >
                 AI Insights
               </a>
 
               <a
                 href="#calculator"
-                className="text-sm font-medium text-zinc-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-secondary-base transition-colors"
               >
                 Savings Calc
               </a>
 
               <a
                 href="#pricing"
-                className="text-sm font-medium text-zinc-600 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
+                className="text-sm font-medium text-muted-foreground hover:text-secondary-base transition-colors"
               >
                 Pricing
               </a>
@@ -82,7 +82,7 @@ export default function MarketingNavbar() {
               <Button
                 size="sm"
                 onClick={() => navigate(AUTH_ROUTES.SIGN_UP)}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white cursor-pointer"
+                className="bg-secondary-base hover:bg-secondary-base/90 text-white cursor-pointer border-0"
               >
                 Get Started
               </Button>
@@ -93,7 +93,7 @@ export default function MarketingNavbar() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg"
+              className="p-2 text-foreground hover:bg-muted rounded-lg"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -107,11 +107,11 @@ export default function MarketingNavbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-4 pt-2 pb-4 space-y-1">
+        <div className="md:hidden border-b border-border bg-card px-4 pt-2 pb-4 space-y-1">
           <a
             href="#features"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted"
           >
             Features
           </a>
@@ -119,7 +119,7 @@ export default function MarketingNavbar() {
           <a
             href="#demo"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted"
           >
             AI Insights
           </a>
@@ -127,7 +127,7 @@ export default function MarketingNavbar() {
           <a
             href="#calculator"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted"
           >
             Savings Calc
           </a>
@@ -135,7 +135,7 @@ export default function MarketingNavbar() {
           <a
             href="#pricing"
             onClick={() => setIsMobileMenuOpen(false)}
-            className="block px-3 py-2 rounded-md text-base font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-900"
+            className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:bg-muted"
           >
             Pricing
           </a>
@@ -153,7 +153,7 @@ export default function MarketingNavbar() {
             </Button>
 
             <Button
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="w-full bg-secondary-base hover:bg-secondary-base/90 text-white border-0"
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 navigate(AUTH_ROUTES.SIGN_UP);

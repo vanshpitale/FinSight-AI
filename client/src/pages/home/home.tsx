@@ -12,7 +12,7 @@ import MarketingFooter from "./_components/marketing-footer";
 
 export default function HomePage() {
   return (
-    <div className="w-full min-h-screen bg-zinc-50 dark:bg-zinc-950 font-sans selection:bg-emerald-500 selection:text-white overflow-x-hidden">
+    <div className="w-full min-h-screen bg-neutral-base dark:bg-primary-base font-sans selection:bg-secondary-base selection:text-white overflow-x-hidden">
       <MarketingNavbar />
       <main>
         <HeroSection />

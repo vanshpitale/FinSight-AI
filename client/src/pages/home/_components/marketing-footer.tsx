@@ -3,7 +3,7 @@ import { Github, Twitter, Linkedin, Sparkles } from "lucide-react";
 
 export default function MarketingFooter() {
   return (
-    <footer className="bg-zinc-900 text-zinc-400 border-t border-zinc-800 py-16">
+    <footer className="bg-primary-base text-muted-foreground border-t border-border/10 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-5 gap-8">
         
         {/* Brand Column */}
@@ -11,7 +11,7 @@ export default function MarketingFooter() {
           <div className="text-white">
             <Logo url="/" />
           </div>
-          <p className="text-xs leading-relaxed max-w-sm text-zinc-400">
+          <p className="text-xs leading-relaxed max-w-sm text-muted-foreground">
             FinSight AI empowers you to track your money, gain detailed insights, and automate budgeting with cutting-edge artificial intelligence. Take charge of your financial horizon.
           </p>
           <div className="flex gap-4 pt-2">
@@ -87,12 +87,12 @@ export default function MarketingFooter() {
       </div>
 
       {/* Bottom Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-zinc-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-border/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-muted-foreground/60">
         <div>
           &copy; {new Date().getFullYear()} FinSight AI (Branded as Finora). All rights reserved.
         </div>
         <div className="flex items-center gap-1">
-          <Sparkles className="h-3 w-3 text-emerald-500" />
+          <Sparkles className="h-3 w-3 text-secondary-base" />
           <span>Secured with AES-256 and SSL bank-grade pipelines</span>
         </div>
       </div>

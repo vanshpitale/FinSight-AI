@@ -15,59 +15,59 @@ const FEATURES = [
     title: "AI Spending Insights",
     description:
       "Our customized AI models analyze your transactions daily to spot anomalies, flag subscription leaks, and suggest realistic optimization paths.",
-    color: "from-emerald-500/10 to-teal-500/10 text-emerald-600 dark:text-emerald-400",
+    color: "from-secondary-base/15 to-secondary-base/5 text-secondary-base",
   },
   {
     icon: Target,
     title: "Dynamic Smart Budgets",
     description:
       "Create category-based budgets that adapt to your historical spending and monthly income fluctuations to prevent overspending before it happens.",
-    color: "from-blue-500/10 to-indigo-500/10 text-blue-600 dark:text-blue-400",
+    color: "from-tertiary-base/15 to-tertiary-base/5 text-tertiary-base",
   },
   {
     icon: Shield,
     title: "Bank-Grade Encryption",
     description:
       "Your privacy is our priority. We use AES-256 bank-level encryption. Your financial credentials are never stored, keeping your files completely secure.",
-    color: "from-purple-500/10 to-pink-500/10 text-purple-600 dark:text-purple-400",
+    color: "from-secondary-base/15 to-tertiary-base/5 text-secondary-base",
   },
   {
     icon: Activity,
     title: "Real-time Cash Flow",
     description:
       "Visualize your income against expenses in real time. Gain instant insights into your true net savings rate with high-fidelity charts.",
-    color: "from-amber-500/10 to-orange-500/10 text-amber-600 dark:text-amber-400",
+    color: "from-tertiary-base/15 to-secondary-base/5 text-tertiary-base",
   },
   {
     icon: Calendar,
     title: "Smart Bill Reminders",
     description:
       "Detect recurring subscription charges automatically. Get notified before transactions execute so you never get hit with a surprise bill.",
-    color: "from-rose-500/10 to-red-500/10 text-rose-600 dark:text-rose-400",
+    color: "from-secondary-base/15 to-secondary-base/5 text-secondary-base",
   },
   {
     icon: Download,
     title: "Seamless Reports Export",
     description:
       "Filter transactions easily and generate detailed PDF or CSV reports for tax season, business expenses, or personal records in seconds.",
-    color: "from-cyan-500/10 to-sky-500/10 text-cyan-600 dark:text-cyan-400",
+    color: "from-tertiary-base/15 to-tertiary-base/5 text-tertiary-base",
   },
 ];
 
 export default function FeaturesGrid() {
   return (
-    <section id="features" className="py-20 bg-zinc-50 dark:bg-zinc-950/40 relative">
+    <section id="features" className="py-20 bg-neutral-base dark:bg-primary-base/40 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-xs font-semibold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+          <h2 className="text-xs font-semibold tracking-wider text-secondary-base uppercase">
             Platform Capabilities
           </h2>
-          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
             Smart tools to simplify your financial life
           </p>
-          <p className="text-base text-zinc-600 dark:text-zinc-400">
+          <p className="text-base text-muted-foreground">
             Say goodbye to spreadsheets. FinSight AI automates tracking and pairs it
             with actionable artificial intelligence to grow your net worth.
           </p>
@@ -80,10 +80,10 @@ export default function FeaturesGrid() {
             return (
               <div
                 key={idx}
-                className="group relative bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-500/30 dark:hover:border-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative bg-card border border-border p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-secondary-base/30 dark:hover:border-secondary-base/20 transition-all duration-300 transform hover:-translate-y-1"
               >
                 {/* Decorative Hover Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary-base/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
 
                 {/* Icon Container */}
                 <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.color} mb-6 relative z-10`}>
@@ -91,12 +91,12 @@ export default function FeaturesGrid() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-100 mb-3 relative z-10">
+                <h3 className="text-lg font-bold text-foreground mb-3 relative z-10">
                   {feature.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed relative z-10">
+                <p className="text-sm text-muted-foreground leading-relaxed relative z-10">
                   {feature.description}
                 </p>
               </div>

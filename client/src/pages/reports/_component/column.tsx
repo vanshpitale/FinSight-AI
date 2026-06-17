@@ -35,13 +35,13 @@ export const reportColumns: ColumnDef<ReportType>[] = [
     cell: ({ row }) => {
       const status = row.getValue("status") as string;
       const statusStyles = {
-        [_REPORT_STATUS.SENT]: "bg-green-100 text-green-800",
-        [_REPORT_STATUS.FAILED]: "bg-red-100 text-red-800",
-        [_REPORT_STATUS.PENDING]: "bg-yellow-100 text-yellow-800",
-        [_REPORT_STATUS.PROCESSING]: "bg-blue-100 text-blue-800",
+        [_REPORT_STATUS.SENT]: "bg-secondary-base/10 text-secondary-base font-semibold",
+        [_REPORT_STATUS.FAILED]: "bg-destructive/10 text-destructive font-semibold",
+        [_REPORT_STATUS.PENDING]: "bg-amber-500/10 text-amber-500 font-semibold",
+        [_REPORT_STATUS.PROCESSING]: "bg-tertiary-base/10 text-tertiary-base font-semibold",
       };
       
-      const style = statusStyles[status as ReportStatusType] || "bg-gray-100 text-gray-800";
+      const style = statusStyles[status as ReportStatusType] || "bg-muted text-muted-foreground font-semibold";
       
       return (
         <span className={`inline-flex items-center rounded-full
