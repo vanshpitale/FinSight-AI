@@ -15,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useRegisterMutation } from "@/features/auth/authAPI";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,30 +27,24 @@ type FormValues = z.infer<typeof schema>;
 
 const SignUpForm = () => {
   const navigate = useNavigate();
-  // const [register,{isLoading}] = useRegisterMutation();
-  
-  const isLoading = false;
+  const [register, { isLoading }] = useRegisterMutation();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
   const onSubmit = (values: FormValues) => {
-    console.log(values);
-    toast.success("Sign up successful");
-    navigate(AUTH_ROUTES.SIGN_IN);
-
-    // register(values)
-    // .unwrap()
-    // .then(() => {
-    //   form.reset();
-    //   toast.success("Sign up successful");
-    //   navigate(AUTH_ROUTES.SIGN_IN);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   toast.error(error.data?.message || "Failed to sign up");
-    // });
+    register(values)
+      .unwrap()
+      .then(() => {
+        form.reset();
+        toast.success("Sign up successful");
+        navigate(AUTH_ROUTES.SIGN_IN);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.data?.message || "Failed to sign up");
+      });
   };
 
   return (
@@ -59,7 +54,7 @@ const SignUpForm = () => {
         className="flex flex-col gap-6"
       >
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Sign up to Acme Inc.</h1>
+          <h1 className="text-2xl font-bold">Sign up to FinSight AI</h1>
           <p className="text-balance text-sm text-muted-foreground">
             Fill information below to sign up
           </p>

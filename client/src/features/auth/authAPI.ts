@@ -16,6 +16,8 @@ export const authApi = apiClient.injectEndpoints({
         body: credentials
       }),
     }),
+
+    //skip
     logout: builder.mutation({
       query: () => ({
         url: '/auth/logout',
