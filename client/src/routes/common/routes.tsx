@@ -9,9 +9,13 @@ import Account from "@/pages/settings/account";
 import Appearance from "@/pages/settings/appearance";
 import Billing from "@/pages/settings/billing";
 import HomePage from "@/pages/home/home";
+import { PUBLIC_ROUTES } from "./routePath";
+
+export const publicRoutePaths = [
+  { path: PUBLIC_ROUTES.HOME, element: <HomePage /> },
+];
 
 export const authenticationRoutePaths = [
-  { path: AUTH_ROUTES.HOME, element: <HomePage /> },
   { path: AUTH_ROUTES.SIGN_IN, element: <SignIn /> },
   { path: AUTH_ROUTES.SIGN_UP, element: <SignUp /> },
 ];
@@ -20,8 +24,9 @@ export const protectedRoutePaths = [
   { path: PROTECTED_ROUTES.OVERVIEW, element: <Dashboard /> },
   { path: PROTECTED_ROUTES.TRANSACTIONS, element: <Transactions /> },
   { path: PROTECTED_ROUTES.REPORTS, element: <Reports /> },
-  { path: PROTECTED_ROUTES.SETTINGS, 
-    element: <Settings /> ,
+  {
+    path: PROTECTED_ROUTES.SETTINGS,
+    element: <Settings />,
     children: [
       { index: true, element: <Account /> }, // Default route
       { path: PROTECTED_ROUTES.SETTINGS, element: <Account /> },
