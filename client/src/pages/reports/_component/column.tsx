@@ -39,13 +39,13 @@ export const reportColumns: ColumnDef<ReportType>[] = [
         [_REPORT_STATUS.FAILED]: "bg-destructive/10 text-destructive font-semibold",
         [_REPORT_STATUS.PENDING]: "bg-amber-500/10 text-amber-500 font-semibold",
         [_REPORT_STATUS.PROCESSING]: "bg-tertiary-base/10 text-tertiary-base font-semibold",
+        [_REPORT_STATUS.NO_ACTIVITY]: "bg-gray-100 text-gray-800 font-semibold",
       };
-      
+
       const style = statusStyles[status as ReportStatusType] || "bg-muted text-muted-foreground font-semibold";
-      
+
       return (
-        <span className={`inline-flex items-center rounded-full
-         px-2.5 py-0.5 text-xs font-medium ${style}`}>
+        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${style}`}>
           {status}
         </span>
       );
