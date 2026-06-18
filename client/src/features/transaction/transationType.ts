@@ -51,13 +51,15 @@ export interface TransactionType {
 
 export interface GetAllTransactionResponse {
   message: string;
-  transactions: TransactionType[];
-  pagination: {
-    pageSize: number;
-    pageNumber: number;
-    totalCount: number;
-    totalPages: number;
-    skip: number;
+  result: {
+    transactions: TransactionType[];
+    pagination: {
+      pageSize: number;
+      pageNumber: number;
+      totalCount: number;
+      totalPages: number;
+      skip: number;
+    };
   };
 }
 
@@ -79,7 +81,7 @@ export interface AIScanReceiptResponse {
 
 export interface GetSingleTransactionResponse {
   message: string;
-  data: TransactionType;
+  transaction: TransactionType;
 }
 
 export interface UpdateTransactionPayload {

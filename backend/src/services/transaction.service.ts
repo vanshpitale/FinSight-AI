@@ -219,28 +219,17 @@ export const bulkTransactionService = async (userId: string, transactions: Creat
     }
 };
 
-export const scanReceiptService = async (file: Express.Multer.File | undefined) => {
-    if(!file) throw new BadRequestException("No file uploaded");
-
-    try {
-        if(!file.path) throw new BadRequestException("failed to upload file");
-
-        console.log(file.path);
-
-        const responseData = await axios.get(file.path, {
-            responseType: 'arraybuffer'
-        });
-        const base64String = Buffer.from(responseData.data).
-        toString("base64");
-
-        if(!base64String) throw new BadRequestException("Could not Process file");
-
-        const result = await genAI.models.generateContent({
-            model: genAIModel,
+const generateReceiptContent = async (
+    base64String: string,
+    mimeType: string
+) => {
+    const request = (model: string) =>
+        genAI.models.generateContent({
+            model,
             contents: [
                 createUserContent([
                     receiptPrompt,
-                    createPartFromBase64(base64String, file.mimetype),
+                    createPartFromBase64(base64String, mimeType),
                 ]),
             ],
             config: {
@@ -250,14 +239,58 @@ export const scanReceiptService = async (file: Express.Multer.File | undefined) 
             },
         });
 
+    try {
+        console.log("Trying Gemini 3.5 Flash...");
+
+        return await request("gemini-3.5-flash");
+    } catch (error: any) {
+        console.log(error);
+        const isUnavailable =
+            error?.status === 503 ||
+            error?.message?.includes("high demand") ||
+            error?.message?.includes("UNAVAILABLE");
+
+        if (!isUnavailable) {
+            throw error;
+        }
+
+        console.log(
+            "Gemini 3.5 unavailable. Falling back to Gemini 2.5 Flash..."
+        );
+
+        return await request("gemini-2.5-flash");
+    }
+};
+
+export const scanReceiptService = async (file: Express.Multer.File | undefined) => {
+    if (!file) throw new BadRequestException("No file uploaded");
+
+    try {
+        if (!file.path) throw new BadRequestException("failed to upload file");
+
+        console.log(file.path);
+
+        const responseData = await axios.get(file.path, {
+            responseType: 'arraybuffer'
+        });
+        const base64String = Buffer.from(responseData.data).
+            toString("base64");
+
+        if (!base64String) throw new BadRequestException("Could not Process file");
+
+        const result = await generateReceiptContent(
+            base64String,
+            file.mimetype
+        );
+
         const response = result.text;
         const cleanedText = response?.replace(/```(?:json)?\n?/g, "").trim();
 
-        if(!cleanedText) return { error: "Could notread receipt content" };
+        if (!cleanedText) return { error: "Could notread receipt content" };
 
         const data = JSON.parse(cleanedText);
 
-        if(!data.amount || !data.date) {
+        if (!data.amount || !data.date) {
             return { error: "Receipt missing required information" };
         }
 
@@ -271,7 +304,12 @@ export const scanReceiptService = async (file: Express.Multer.File | undefined) 
             type: data.type,
             receiptUrl: file.path,
         };
-    } catch (error) {
-        return { error: "Receipt scanning service unavailable" };
+    } catch (error: any) {
+        console.error("SCAN RECEIPT ERROR:");
+        console.error(error);
+
+        return {
+            error: error?.message || "Receipt scanning service unavailable",
+        };
     }
 }

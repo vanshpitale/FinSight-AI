@@ -9,7 +9,7 @@ export const transactionApi = apiClient.injectEndpoints({
         method: "POST",
         body: body,
       }),
-      invalidatesTags: ["transactions","analytics"],
+      invalidatesTags: ["transactions", "analytics"],
     }),
 
     aiScanReceipt: builder.mutation<AIScanReceiptResponse, FormData>({
@@ -21,14 +21,14 @@ export const transactionApi = apiClient.injectEndpoints({
     }),
 
     getAllTransactions: builder.query<GetAllTransactionResponse, GetAllTransactionParams>({
-      query: (params) =>{
-        const {keyword = undefined, type = undefined, recurringStatus = undefined, pageNumber = 1, pageSize = 10} = params;
-        
-        return  ({
+      query: (params) => {
+        const { keyword = undefined, type = undefined, recurringStatus = undefined, pageNumber = 1, pageSize = 10 } = params;
+
+        return ({
           url: "/transaction/all",
           method: "GET",
-          params:{
-            keyword ,
+          params: {
+            keyword,
             type,
             recurringStatus,
             pageNumber,
@@ -79,7 +79,7 @@ export const transactionApi = apiClient.injectEndpoints({
         url: `/transaction/delete/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["transactions","analytics"],
+      invalidatesTags: ["transactions", "analytics"],
     }),
 
     bulkDeleteTransaction: builder.mutation<void, string[]>({
@@ -90,7 +90,7 @@ export const transactionApi = apiClient.injectEndpoints({
           transactionIds,
         },
       }),
-      invalidatesTags: ["transactions","analytics"],
+      invalidatesTags: ["transactions", "analytics"],
     }),
   }),
 });

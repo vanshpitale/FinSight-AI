@@ -26,6 +26,8 @@ import { formatCurrency } from "@/lib/format-currency";
 import useEditTransactionDrawer from "@/hooks/use-edit-transaction-drawer";
 import { TransactionType } from "@/features/transaction/transationType";
 import { _TRANSACTION_FREQUENCY, _TRANSACTION_TYPE } from "@/constant";
+import { useDeleteTransactionMutation, useDuplicateTransactionMutation } from "@/features/transaction/transactionAPI";
+import { toast } from "sonner";
 
 
 type FrequencyInfo = {
@@ -111,11 +113,10 @@ export const transactionColumns: ColumnDef<TransactionType>[] = [
     cell: ({ row }) => (
       <div className="capitalize">
         <span
-          className={`px-2 py-1 rounded-full text-xs font-semibold ${
-            row.getValue("type") === _TRANSACTION_TYPE.INCOME
-              ? "bg-secondary-base/10 text-secondary-base"
-              : "bg-destructive/10 text-destructive"
-          }`}
+          className={`px-2 py-1 rounded-full text-xs font-semibold ${row.getValue("type") === _TRANSACTION_TYPE.INCOME
+            ? "bg-secondary-base/10 text-secondary-base"
+            : "bg-destructive/10 text-destructive"
+            }`}
         >
           {row.getValue("type")}
         </span>
@@ -134,11 +135,10 @@ export const transactionColumns: ColumnDef<TransactionType>[] = [
 
       return (
         <div
-          className={`text-right font-semibold ${
-            type === _TRANSACTION_TYPE.INCOME
-              ? "text-secondary-base"
-              : "text-destructive"
-          }`}
+          className={`text-right font-semibold ${type === _TRANSACTION_TYPE.INCOME
+            ? "text-secondary-base"
+            : "text-destructive"
+            }`}
         >
           {type === _TRANSACTION_TYPE.EXPENSE ? "-" : "+"}
           {formatCurrency(amount)}
@@ -200,9 +200,9 @@ export const transactionColumns: ColumnDef<TransactionType>[] = [
         }
         : { DEFAULT: { label: "One-time", icon: CircleDot } };
 
-        const frequencyKey = isRecurring ? (frequency as string) : "DEFAULT";
-        const frequencyInfo = frequencyMap?.[frequencyKey] || frequencyMap.DEFAULT;
-        const { label, icon: Icon } = frequencyInfo;
+      const frequencyKey = isRecurring ? (frequency as string) : "DEFAULT";
+      const frequencyInfo = frequencyMap?.[frequencyKey] || frequencyMap.DEFAULT;
+      const { label, icon: Icon } = frequencyInfo;
 
       return (
         <div className="flex items-center gap-2">
@@ -230,34 +230,31 @@ export const transactionColumns: ColumnDef<TransactionType>[] = [
 // eslint-disable-next-line react-refresh/only-export-components
 const ActionsCell = ({ row }: { row: any }) => {
   //const isRecurring = row.original.isRecurring;
-  const transactionId = row.original.id;
+  const transactionId = row.original._id;
   const { onOpenDrawer } = useEditTransactionDrawer();
-  // const [duplicateTransaction,{isLoading:isDuplicating}] = useDuplicateTransactionMutation();
-  // const [deleteTransaction,{isLoading: isDeleting}] = useDeleteTransactionMutation();
+  const [duplicateTransaction, { isLoading: isDuplicating }] = useDuplicateTransactionMutation();
+  const [deleteTransaction, { isLoading: isDeleting }] = useDeleteTransactionMutation();
 
-  const isDeleting = true
-  const isDuplicating = false
-
-  const handleDuplicate = (e:Event) => {
+  const handleDuplicate = (e: Event) => {
     e.preventDefault();
     if (isDuplicating) return;
-    // duplicateTransaction(transactionId).unwrap().then(() => {
-    //   toast.success("Transaction duplicated successfully");
-    // }).catch((error) => {
-    //   toast.error(error.data?.message || "Failed to duplicate transaction");
-    // });
-    
+    duplicateTransaction(transactionId).unwrap().then(() => {
+      toast.success("Transaction duplicated successfully");
+    }).catch((error) => {
+      toast.error(error.data?.message || "Failed to duplicate transaction");
+    });
+
   }
 
-  const handleDelete = (e:Event) => {
+  const handleDelete = (e: Event) => {
     e.preventDefault();
     if (isDeleting) return;
-    // deleteTransaction(transactionId).unwrap().then(() => {
-    //   toast.success("Transaction deleted successfully");
-    // }).catch((error) => {
-    //   toast.error(error.data?.message || "Failed to delete transaction");
-    // });
-    
+    deleteTransaction(transactionId).unwrap().then(() => {
+      toast.success("Transaction deleted successfully");
+    }).catch((error) => {
+      toast.error(error.data?.message || "Failed to delete transaction");
+    });
+
   }
 
   return (
@@ -268,26 +265,26 @@ const ActionsCell = ({ row }: { row: any }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-44" align="end"
-       onCloseAutoFocus={(e) => {
-        if (isDeleting || isDuplicating) {
-          e.preventDefault();
-        }
-      }}
+        onCloseAutoFocus={(e) => {
+          if (isDeleting || isDuplicating) {
+            e.preventDefault();
+          }
+        }}
       >
         <DropdownMenuItem onClick={() => onOpenDrawer(transactionId)}>
           <Pencil className="mr-1 h-4 w-4" />
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem
-        className="relative"
-        disabled={isDuplicating}
-         onSelect={handleDuplicate}
+          className="relative"
+          disabled={isDuplicating}
+          onSelect={handleDuplicate}
         >
           <Copy className="mr-1 h-4 w-4" />
           Duplicate
           {isDuplicating && <Loader className="ml-1 h-4 w-4 absolute right-2 animate-spin" />}
         </DropdownMenuItem>
-        
+
         {/* {isRecurring && (
           <>
             <DropdownMenuItem>
@@ -296,15 +293,15 @@ const ActionsCell = ({ row }: { row: any }) => {
             </DropdownMenuItem>
           </>
         )} */}
-          <DropdownMenuSeparator />
-            <DropdownMenuItem className="relative !text-destructive"
-              disabled={isDeleting}
-              onSelect={handleDelete}
-            >
-              <Trash2 className="mr-1 h-4 w-4 !text-destructive" />
-              Delete
-              {isDeleting && <Loader className="ml-1 h-4 w-4 absolute right-2 animate-spin" />}
-            </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="relative !text-destructive"
+          disabled={isDeleting}
+          onSelect={handleDelete}
+        >
+          <Trash2 className="mr-1 h-4 w-4 !text-destructive" />
+          Delete
+          {isDeleting && <Loader className="ml-1 h-4 w-4 absolute right-2 animate-spin" />}
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

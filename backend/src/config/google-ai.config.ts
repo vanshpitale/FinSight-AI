@@ -5,4 +5,5 @@ export const genAI = new GoogleGenAI({
     apiKey: Env.GEMINI_API_KEY
 });
 
-export const genAIModel = 'gemini-3.5-flash'
+export const genAIModel = "gemini-2.5-flash"
+// 'gemini-3.5-flash'
