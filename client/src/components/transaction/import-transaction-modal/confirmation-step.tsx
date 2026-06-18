@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { MAX_IMPORT_LIMIT } from "@/constant";
 import { BulkTransactionType } from "@/features/transaction/transationType";
 import { useProgressLoader } from "@/hooks/use-progress-loader";
+import { useBulkImportTransactionMutation } from "@/features/transaction/transactionAPI";
 
 type ConfirmationStepProps = {
   file: File | null;
@@ -92,7 +93,7 @@ const ConfirmationStep = ({
     resetProgress,
   } = useProgressLoader({ initialProgress: 10, completionDelay: 500 });
 
-  // const [bulkImportTransaction] = useBulkImportTransactionMutation();
+  const [bulkImportTransaction] = useBulkImportTransactionMutation();
 
   const handleImport = () => {
     const { transactions, hasValidationErrors } =
@@ -119,30 +120,24 @@ const ConfirmationStep = ({
 
     console.log(payload, "payload");
 
-    setTimeout(() => {
-      clearInterval(interval);
-      doneProgress(); // Sets progress to 100%
-      resetProgress(); // Optional reset for reuse
-      onComplete();
-    }, 2000);
-
-    // bulkImportTransaction(payload)
-    //   .unwrap()
-    //   .then(() => {
-    //     updateProgress(100);
-    //     toast.success("Imported transactions successfully");
-    //   })
-    //   .catch((error) => {
-    //     resetProgress();
-    //     toast.error(error.data?.message || "Failed to import transactions");
-    //   })
-    //   .finally(() => {
-    //     clearInterval(interval);
-    //     setTimeout(() => {
-    //       resetProgress();
-    //       onComplete();
-    //     }, 500);
-    //   });
+    bulkImportTransaction(payload)
+      .unwrap()
+      .then(() => {
+        updateProgress(100);
+        toast.success("Imported transactions successfully");
+      })
+      .catch((error) => {
+        resetProgress();
+        toast.error(error.data?.message || "Failed to import transactions");
+      })
+      .finally(() => {
+        clearInterval(interval);
+        setTimeout(() => {
+          doneProgress();
+          resetProgress();
+          onComplete();
+        }, 500);
+      });
   };
 
   const getAssignFieldToMappedTransactions = () => {
@@ -170,17 +165,17 @@ const ConfirmationStep = ({
         const message =
           error instanceof z.ZodError
             ? error.errors
-                .map((e) => {
-                  if (e.path[0] === "type")
-                    return "Transaction type:- must be INCOME or EXPENSE";
-                  if (e.path[0] === "paymentMethod")
-                    return (
-                      "Payment method:- must be one of: " +
-                      Object.values(PAYMENT_METHODS_ENUM).join(", ")
-                    );
-                  return `${e.path[0]}: ${e.message}`;
-                })
-                .join("\n")
+              .map((e) => {
+                if (e.path[0] === "type")
+                  return "Transaction type:- must be INCOME or EXPENSE";
+                if (e.path[0] === "paymentMethod")
+                  return (
+                    "Payment method:- must be one of: " +
+                    Object.values(PAYMENT_METHODS_ENUM).join(", ")
+                  );
+                return `${e.path[0]}: ${e.message}`;
+              })
+              .join("\n")
             : "Invalid data";
         setErrors((prev) => ({
           ...prev,
