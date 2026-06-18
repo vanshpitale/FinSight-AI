@@ -140,7 +140,7 @@ export function DataTable<TData>({
 
   const handleDelete = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const selectedIds = selectedRows.map((row) => (row.original as any).id);
+    const selectedIds = selectedRows.map((row) => (row.original as any)._id);
     onBulkDelete?.(selectedIds);
     setRowSelection({});
   };
@@ -185,16 +185,16 @@ export function DataTable<TData>({
           {(searchTerm ||
             Object.keys(rowSelection).length > 0 ||
             Object.keys(filterValues).length > 0) && (
-            <Button
-              variant="ghost"
-              disabled={isLoading || isBulkDeleting}
-              onClick={handleClear}
-              className="h-8 px-2"
-            >
-              <X className="h-4 w-4 mr-1" />
-              Reset
-            </Button>
-          )}
+              <Button
+                variant="ghost"
+                disabled={isLoading || isBulkDeleting}
+                onClick={handleClear}
+                className="h-8 px-2"
+              >
+                <X className="h-4 w-4 mr-1" />
+                Reset
+              </Button>
+            )}
         </div>
 
         {(selection && hasSelections) || isBulkDeleting ? (
