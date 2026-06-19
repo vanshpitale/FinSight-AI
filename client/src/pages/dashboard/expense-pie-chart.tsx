@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Label, Pie, PieChart, Cell } from "recharts";
 
 import {
@@ -20,11 +19,7 @@ import { formatCurrency } from "@/lib/format-currency";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPercentage } from "@/lib/format-percentage";
 import { EmptyState } from "@/components/empty-state";
-
-interface Category {
-  name: string;
-  amount: number;
-}
+import { useExpensePieChartBreakdownQuery } from "@/features/analytics/analyticsAPI";
 
 const COLORS = [
   "var(--color-chart-1)",
@@ -33,24 +28,6 @@ const COLORS = [
   "var(--color-chart-4)",
 ];
 
-const _categories: Category[] = [
-  {
-    name: "Food & Dining",
-    amount: 450,
-  },
-  {
-    name: "Rent",
-    amount: 500,
-  },
-  {
-    name: "Utilities",
-    amount: 300,
-  },
-  {
-    name: "Others",
-    amount: 100,
-  },
-];
 
 // Create chart config for shadcn UI chart
 const chartConfig = {
@@ -62,26 +39,11 @@ const chartConfig = {
 const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
   const { dateRange } = props;
 
-  // const { data, isFetching } = useExpensePieChartBreakdownQuery({
-  //   preset: dateRange?.value,
-  // });
-  // const categories = data?.data?.breakdown || [];
-  // const totalSpent = data?.data?.totalSpent || 0;
-
-  const isFetching = false;
-
-  const totalSpent = React.useMemo(() => {
-    return _categories.reduce((sum, category) => sum + category.amount, 0);
-  }, []);
-
-  // Format data for pie chart
-  const categories = React.useMemo(() => {
-    return _categories.map((category) => ({
-      name: category.name,
-      value: category.amount,
-      percentage: Math.round((category.amount / totalSpent) * 100),
-    }));
-  }, [totalSpent]);
+  const { data, isFetching } = useExpensePieChartBreakdownQuery({
+    preset: dateRange?.value,
+  });
+  const categories = data?.data?.breakdown || [];
+  const totalSpent = data?.data?.totalSpent || 0;
 
   if (isFetching) {
     return <PieChartSkeleton />;
@@ -171,7 +133,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
                               y={viewBox.cy}
                               className="fill-foreground text-2xl font-bold"
                             >
-                              ${totalSpent.toLocaleString()}
+                              ₹{totalSpent.toLocaleString()}
                             </tspan>
                             <tspan
                               x={viewBox.cx}

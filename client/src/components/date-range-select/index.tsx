@@ -6,6 +6,7 @@ import {
   subYears,
   startOfMonth,
   startOfYear,
+  endOfDay,
 } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,14 +18,14 @@ import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
 
 export const DateRangeEnum = {
-  LAST_30_DAYS : "30days",
-  LAST_MONTH : "lastMonth",
-  LAST_3_MONTHS : "last3Months",
-  LAST_YEAR : "lastYear",
-  THIS_MONTH : "thisMonth",
-  THIS_YEAR : "thisYear",
-  ALL_TIME : "allTime",
-  CUSTOM : "custom"
+  LAST_30_DAYS: "30days",
+  LAST_MONTH: "lastMonth",
+  LAST_3_MONTHS: "last3Months",
+  LAST_YEAR: "lastYear",
+  THIS_MONTH: "thisMonth",
+  THIS_YEAR: "thisYear",
+  ALL_TIME: "allTime",
+  CUSTOM: "custom"
 } as const;
 
 export type DateRangeEnumType = (typeof DateRangeEnum)[keyof typeof DateRangeEnum];
@@ -48,16 +49,16 @@ interface DateRangeSelectProps {
   defaultRange?: DateRangeEnumType;
 }
 
-const today = new Date();
-const yesterday = subDays(today, 1);
+const now = new Date();
+const today = endOfDay(now);
 
 const presets: DateRangePreset[] = [
   {
     label: "Last 30 Days",
     value: DateRangeEnum.LAST_30_DAYS,
     getRange: () => ({
-      from: subDays(yesterday, 29),
-      to: yesterday,
+      from: subDays(today, 29),
+      to: today,
       value: DateRangeEnum.LAST_30_DAYS,
       label: "for Past 30 Days",
     }),
@@ -134,14 +135,13 @@ export const DateRangeSelect = ({
 
   const displayText = dateRange
     ? presets.find((p) => p.value === dateRange.value)?.label ||
-      (dateRange.from
-        ? `${format(dateRange.from, "MMM dd, y")} - ${
-            dateRange.to ? format(dateRange.to, "MMM dd, y") : "Present"
-          }`
-        : "Select a duration")
+    (dateRange.from
+      ? `${format(dateRange.from, "MMM dd, y")} - ${dateRange.to ? format(dateRange.to, "MMM dd, y") : "Present"
+      }`
+      : "Select a duration")
     : "Select a duration";
 
-      // Set default range on initial render
+  // Set default range on initial render
   useEffect(() => {
     if (!dateRange) {
       const defaultPreset = presets.find(p => p.value === defaultRange);
