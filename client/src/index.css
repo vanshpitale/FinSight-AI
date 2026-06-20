@@ -166,3 +166,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   opacity: 0.9;
 }
+
+.theme-transition {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease, fill 0.3s ease, stroke 0.3s ease, box-shadow 0.3s ease;
+}

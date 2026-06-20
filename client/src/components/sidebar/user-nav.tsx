@@ -1,9 +1,9 @@
 import { ChevronDown, LogOut } from "lucide-react";
 import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-  } from "../ui/avatar";
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../ui/avatar";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -49,7 +49,7 @@ export function UserNav({
           <ChevronDown className="h-3 w-3 text-gray-400 shrink-0" />
         </Button>
       </DropdownMenuTrigger>
-      
+
       <DropdownMenuContent
         className="w-56 bg-primary-base border-zinc-800 text-white shadow-xl"
         align="start"
@@ -63,7 +63,7 @@ export function UserNav({
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-zinc-800" />
         <DropdownMenuGroup>
-          <DropdownMenuItem 
+          <DropdownMenuItem
             className="hover:!bg-white/10 hover:!text-white text-zinc-350 cursor-pointer focus:bg-white/10 focus:text-white"
             onClick={onLogout}
           >

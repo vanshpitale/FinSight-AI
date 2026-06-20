@@ -50,7 +50,7 @@ const CONVERSATIONS: Record<string, Message[]> = {
       text: "Your dining out expense hit ₹45,000 last month (+45% above your average). Here is the breakdown:",
       recommendations: [
         "Late-Night Delivery: 6 transactions were food delivery apps after 9 PM (₹12,000 total).",
-        "Weekend Dinners: Saturday night average tab was ₹4,500 (spiked due to group checks).",
+        "Weekend Dinners: Saturday night average tab was ₹4,550 (spiked due to group checks).",
         "Daily Coffee Run: Minor but frequent morning cafe charges added up to ₹5,000.",
       ],
       metric: {
@@ -81,22 +81,25 @@ export default function AiInsightsDemo() {
   }, [activeTab]);
 
   return (
-    <section id="demo" className="py-24 bg-background relative">
+    <section id="demo" className="py-24 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 theme-transition relative overflow-hidden">
+      {/* Grid Backing */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.015)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none -z-10" />
+
       {/* Decorative Glows */}
-      <div className="absolute top-1/2 left-10 w-72 h-72 bg-secondary-base/5 blur-3xl rounded-full" />
-      <div className="absolute bottom-10 right-10 w-80 h-80 bg-tertiary-base/5 blur-3xl rounded-full" />
+      <div className="absolute top-1/2 left-10 w-72 h-72 bg-secondary-base/3 dark:bg-secondary-base/5 blur-3xl rounded-full" />
+      <div className="absolute bottom-10 right-10 w-80 h-80 bg-tertiary-base/3 dark:bg-tertiary-base/5 blur-3xl rounded-full" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 className="text-xs font-semibold tracking-wider text-secondary-base uppercase">
+        <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-tertiary-base/10 border border-tertiary-base/20 text-tertiary-base text-xs font-semibold">
             Artificial Intelligence
-          </h2>
-          <p className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+          </div>
+          <p className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white theme-transition">
             Meet your smart financial co-pilot
           </p>
-          <p className="text-base text-muted-foreground">
+          <p className="text-sm text-slate-600 dark:text-slate-400 font-medium theme-transition">
             Ask questions, uncover patterns, and get structured advice to optimize your budgets and investments.
           </p>
         </div>
@@ -105,87 +108,87 @@ export default function AiInsightsDemo() {
         <div className="grid lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
           
           {/* Controls / Options Sidebar (Left) */}
-          <div className="lg:col-span-4 flex flex-col justify-center gap-3">
-            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider px-2">
+          <div className="lg:col-span-4 flex flex-col justify-center gap-3.5">
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 block mb-1">
               Select a Query
             </span>
             <button
               onClick={() => setActiveTab("leakage")}
-              className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
+              className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-350 cursor-pointer ${
                 activeTab === "leakage"
-                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
-                  : "bg-card border-border text-foreground hover:bg-muted"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-lg shadow-secondary-base/15"
+                  : "bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-350 dark:hover:border-slate-800"
               }`}
             >
-              <div className="font-semibold text-sm flex items-center gap-2">
-                <HelpCircle className="h-4 w-4" />
+              <div className="font-bold text-xs flex items-center gap-2">
+                <HelpCircle className="h-4 w-4 shrink-0" />
                 Analyze Subscription Leaks
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "leakage" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
+              <p className={`text-[11px] mt-1.5 leading-relaxed font-medium ${activeTab === "leakage" ? "text-slate-200" : "text-slate-500 dark:text-slate-400"}`}>
                 Find double bills or inactive streaming profiles.
               </p>
             </button>
 
             <button
               onClick={() => setActiveTab("vacation")}
-              className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
+              className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-350 cursor-pointer ${
                 activeTab === "vacation"
-                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
-                  : "bg-card border-border text-foreground hover:bg-muted"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-lg shadow-secondary-base/15"
+                  : "bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-350 dark:hover:border-slate-800"
               }`}
             >
-              <div className="font-semibold text-sm flex items-center gap-2">
-                <HelpCircle className="h-4 w-4" />
+              <div className="font-bold text-xs flex items-center gap-2">
+                <HelpCircle className="h-4 w-4 shrink-0" />
                 Plan Vacation Savings Goal
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "vacation" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
+              <p className={`text-[11px] mt-1.5 leading-relaxed font-medium ${activeTab === "vacation" ? "text-slate-200" : "text-slate-500 dark:text-slate-400"}`}>
                 Calculate timelines and find spending cuts.
               </p>
             </button>
 
             <button
               onClick={() => setActiveTab("dining")}
-              className={`w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer ${
+              className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-350 cursor-pointer ${
                 activeTab === "dining"
-                  ? "bg-secondary-base border-secondary-base text-white shadow-md shadow-secondary-base/10"
-                  : "bg-card border-border text-foreground hover:bg-muted"
+                  ? "bg-secondary-base border-secondary-base text-white shadow-lg shadow-secondary-base/15"
+                  : "bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-350 dark:hover:border-slate-800"
               }`}
             >
-              <div className="font-semibold text-sm flex items-center gap-2">
-                <HelpCircle className="h-4 w-4" />
+              <div className="font-bold text-xs flex items-center gap-2">
+                <HelpCircle className="h-4 w-4 shrink-0" />
                 Explain Spending Spikes
               </div>
-              <p className={`text-xs mt-1 leading-relaxed ${activeTab === "dining" ? "text-neutral-base/80" : "text-muted-foreground"}`}>
+              <p className={`text-[11px] mt-1.5 leading-relaxed font-medium ${activeTab === "dining" ? "text-slate-200" : "text-slate-500 dark:text-slate-400"}`}>
                 Break down category increases over the past month.
               </p>
             </button>
           </div>
-
+ 
           {/* Chat Window (Right) */}
-          <div className="lg:col-span-8 bg-card border border-border rounded-2xl shadow-xl flex flex-col justify-between overflow-hidden min-h-[460px]">
+          <div className="lg:col-span-8 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-900 rounded-3xl shadow-xl dark:shadow-2xl flex flex-col justify-between overflow-hidden min-h-[480px] backdrop-blur-md theme-transition">
             {/* Window Header */}
-            <div className="bg-muted/50 px-6 py-4 border-b border-border flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
+            <div className="bg-slate-50/80 dark:bg-slate-900/50 px-6 py-4.5 border-b border-slate-200 dark:border-slate-900 flex items-center justify-between theme-transition">
+              <div className="flex items-center gap-3">
                 <div className="bg-secondary-base text-white p-2 rounded-xl">
                   <Brain className="h-4 w-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-foreground">
+                  <h4 className="text-xs font-black text-slate-800 dark:text-slate-200 theme-transition">
                     FinSight AI Assistant
                   </h4>
-                  <span className="text-[10px] text-secondary-base font-semibold flex items-center gap-1">
+                  <span className="text-[9px] text-secondary-base font-bold flex items-center gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-secondary-base animate-ping" />
-                    Online & Analyzing Feeds
+                    Online & Analyzing Feed
                   </span>
                 </div>
               </div>
-              <span className="text-[10px] bg-muted px-2 py-0.5 rounded text-muted-foreground font-mono">
-                GPT-4o Finance Core
+              <span className="text-[9px] bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-900 px-3 py-1 rounded-full text-slate-500 dark:text-slate-400 font-mono font-bold uppercase tracking-wider theme-transition">
+                Finance Core
               </span>
             </div>
 
             {/* Conversation Flow */}
-            <div className="p-6 flex-1 flex flex-col justify-start gap-6 overflow-y-auto">
+            <div className="p-6 flex-1 flex flex-col justify-start gap-6 overflow-y-auto max-h-[380px]">
               {messages.map((message, i) => (
                 <div
                   key={i}
@@ -197,20 +200,20 @@ export default function AiInsightsDemo() {
                   <div
                     className={`h-8 w-8 rounded-full flex items-center justify-center text-white shrink-0 ${
                       message.sender === "user"
-                        ? "bg-muted-foreground"
+                        ? "bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
                         : "bg-secondary-base"
                     }`}
                   >
-                    {message.sender === "user" ? <User className="h-4 w-4" /> : <Brain className="h-4 w-4" />}
+                    {message.sender === "user" ? <User className="h-4 w-4 text-slate-600 dark:text-slate-300" /> : <Brain className="h-4 w-4 text-white" />}
                   </div>
 
                   {/* Message Bubble */}
                   <div className="space-y-3">
                     <div
-                      className={`px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                      className={`px-4 py-3 rounded-2xl text-xs leading-relaxed font-medium ${
                         message.sender === "user"
-                          ? "bg-muted text-foreground rounded-tr-none"
-                          : "bg-secondary-base/5 dark:bg-secondary-base/10 border border-secondary-base/15 text-foreground rounded-tl-none"
+                          ? "bg-slate-100/80 dark:bg-slate-800/80 text-slate-900 dark:text-slate-100 rounded-tr-none border border-slate-200 dark:border-slate-750"
+                          : "bg-secondary-base/5 dark:bg-secondary-base/10 border border-secondary-base/15 text-slate-900 dark:text-slate-100"
                       }`}
                     >
                       {message.text}
@@ -218,14 +221,14 @@ export default function AiInsightsDemo() {
 
                     {/* Recommendations Block */}
                     {message.recommendations && (
-                      <div className="bg-muted/50 border border-border rounded-xl p-4 space-y-3">
-                        <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-wide">
+                      <div className="bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-900 rounded-2xl p-4.5 space-y-3 theme-transition">
+                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">
                           Recommendations
                         </span>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2.5">
                           {message.recommendations.map((rec, k) => (
-                            <li key={k} className="text-xs text-muted-foreground flex items-start gap-2">
-                              <CheckCircle className="h-3.5 w-3.5 text-secondary-base shrink-0 mt-0.5" />
+                            <li key={k} className="text-xs text-slate-600 dark:text-slate-400 flex items-start gap-2 font-medium theme-transition">
+                              <CheckCircle className="h-4 w-4 text-secondary-base shrink-0 mt-0.5" />
                               <span>{rec}</span>
                             </li>
                           ))}
@@ -235,16 +238,16 @@ export default function AiInsightsDemo() {
 
                     {/* Metric Card */}
                     {message.metric && (
-                      <div className="bg-gradient-to-r from-secondary-base to-tertiary-base text-white rounded-xl p-4 shadow-md flex justify-between items-center">
+                      <div className="bg-gradient-to-r from-secondary-base to-tertiary-base text-white rounded-2xl p-4.5 shadow-lg flex justify-between items-center">
                         <div>
-                          <div className="text-[10px] text-neutral-base/80 font-semibold uppercase">
+                          <div className="text-[9px] text-white/70 font-bold uppercase tracking-wider">
                             {message.metric.label}
                           </div>
-                          <div className="text-2xl font-black mt-0.5">
+                          <div className="text-xl font-black mt-0.5 tracking-tight">
                             {message.metric.value}
                           </div>
                         </div>
-                        <span className="text-[11px] bg-white/20 px-2.5 py-1 rounded-full font-medium">
+                        <span className="text-[10px] bg-white/20 px-3 py-1 rounded-full font-bold">
                           {message.metric.extra}
                         </span>
                       </div>
@@ -259,24 +262,24 @@ export default function AiInsightsDemo() {
                   <div className="h-8 w-8 rounded-full bg-secondary-base flex items-center justify-center text-white shrink-0">
                     <Brain className="h-4 w-4" />
                   </div>
-                  <div className="bg-muted px-4 py-3 rounded-2xl rounded-tl-none flex gap-1 items-center h-9">
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.3s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce [animation-delay:-0.15s]" />
-                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground animate-bounce" />
+                  <div className="bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-750 px-4 py-3 rounded-2xl rounded-tl-none flex gap-1 items-center h-9">
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-400 animate-bounce [animation-delay:-0.3s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-400 animate-bounce [animation-delay:-0.15s]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-slate-400 animate-bounce" />
                   </div>
                 </div>
               )}
             </div>
 
             {/* Input Bar Mock */}
-            <div className="p-4 bg-muted/50 border-t border-border flex gap-2">
+            <div className="p-4 bg-slate-50/80 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-900 flex gap-2 theme-transition">
               <input
                 type="text"
                 disabled
                 placeholder="Ask FinSight AI something..."
-                className="flex-grow bg-card border border-border px-4 py-2 rounded-xl text-xs text-muted-foreground cursor-not-allowed"
+                className="flex-grow bg-white dark:bg-slate-950/60 border border-slate-200 dark:border-slate-850 px-4 py-2.5 rounded-xl text-xs text-slate-400 dark:text-slate-500 cursor-not-allowed font-medium theme-transition"
               />
-              <button disabled className="bg-muted text-muted-foreground p-2 rounded-xl cursor-not-allowed">
+              <button disabled className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-850 text-slate-400 dark:text-slate-650 p-2.5 rounded-xl cursor-not-allowed theme-transition">
                 <Send className="h-4 w-4" />
               </button>
             </div>

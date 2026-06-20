@@ -27,7 +27,7 @@ interface SummaryCardProps {
 }
 
 const getCardStatus = (
-  value: number, 
+  value: number,
   cardType: CardType,
   expenseRatio?: number
 ): CardStatus => {
@@ -171,9 +171,9 @@ const SummaryCard: FC<SummaryCardProps> = ({
     return isPercentageValue
       ? formatPercentage(val, { decimalPlaces: 1 })
       : formatCurrency(val, {
-          isExpense: cardType === "expenses",
-          showSign: cardType === "balance" && val < 0,
-        });
+        isExpense: cardType === "expenses",
+        showSign: cardType === "balance" && val < 0,
+      });
   };
   return (
     <Card className="!border-none !border-0 !gap-0 !bg-white/5">
@@ -212,7 +212,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                 </span>
               )}
             </div>
-          ) : dateRange?.value ===DateRangeEnum.ALL_TIME  ? (
+          ) : dateRange?.value === DateRangeEnum.ALL_TIME ? (
             <span className="text-muted-foreground font-medium">Showing {dateRange?.label}</span>
           ) : value === 0 || status.label ? (
             <div className="flex items-center gap-1.5">
@@ -225,7 +225,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                 <span className="text-muted-foreground font-medium">• {dateRange?.label}</span>
               )}
             </div>
-          ): showTrend ? (
+          ) : showTrend ? (
             <div className="flex items-center gap-1.5">
               {percentageChange !== 0 && (
                 <div
@@ -241,7 +241,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
                   ) : (
                     <TrendingDownIcon className="size-3" />
                   )}
-{/*                   Math.abs(percentageChange || 0) */}
+                  {/*                   Math.abs(percentageChange || 0) */}
                   <span>
                     {formatPercentage(percentageChange || 0, {
                       showSign: percentageChange !== 0,

@@ -8,7 +8,7 @@ import ReportTable from "./_component/report-table";
 
 
 export default function Reports() {
- 
+
   return (
     <PageLayout
       title="Report History"
@@ -18,11 +18,11 @@ export default function Reports() {
         <ScheduleReportDrawer />
       }
     >
-        <Card className="border shadow-none">
-          <CardContent>
-           <ReportTable />
-          </CardContent>
-        </Card>
+      <Card className="border shadow-none">
+        <CardContent>
+          <ReportTable />
+        </CardContent>
+      </Card>
     </PageLayout>
   );
 }
