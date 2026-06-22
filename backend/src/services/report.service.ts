@@ -58,8 +58,6 @@ export const updateReportSettingService = async (userId: string, body: UpdateRep
         }
     }
 
-    console.log(nextReportDate, "Next Report Date")
-
     existingReportSetting.set({
         ...body,
         nextReportDate,
