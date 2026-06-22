@@ -31,7 +31,7 @@ export function CalendarDateRangePicker({
             variant={"outline"}
             className={cn(
               `w-[260px] justify-start text-left font-normal !bg-[var(--secondary-dark-color)]
-               border-gray-700 !text-white !cursor-pointer`,
+               border-slate-700 !text-white !cursor-pointer`,
               !date && "text-muted-foreground"
             )}
           >

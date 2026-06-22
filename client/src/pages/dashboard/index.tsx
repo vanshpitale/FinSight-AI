@@ -13,9 +13,7 @@ const Dashboard = () => {
   return (
     <div className="w-full flex flex-col">
       {/* Dashboard Summary Overview */}
-      <PageLayout className="space-y-6"
-        renderPageHeader={<DashboardSummary dateRange={dateRange} setDateRange={_setDateRange} />}
-      >
+      <PageLayout className="space-y-6" renderPageHeader={<DashboardSummary dateRange={dateRange} setDateRange={_setDateRange} />}>
         {/* Dashboard Main Section */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-6 gap-8">
           <div className="lg:col-span-4">

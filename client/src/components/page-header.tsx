@@ -9,8 +9,8 @@ interface PageHeaderProps {
 
 const PageHeader = ({ title, subtitle, rightAction, renderPageHeader }: PageHeaderProps) => {
   return (
-    <div className="w-full pb-20 pt-4 px-5 lg:px-0 bg-[#1a1e2a] text-white">
-      <div className="w-full max-w-[var(--max-width)]  mx-auto">
+    <div className="w-full pt-4 px-5 lg:px-0">
+      <div className="w-full max-w-[var(--max-width)] mx-auto">
         {renderPageHeader
           ? <Fragment>{renderPageHeader}</Fragment>
           : (

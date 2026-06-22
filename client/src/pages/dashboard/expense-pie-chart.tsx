@@ -78,7 +78,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
   };
 
   return (
-    <Card className="!shadow-none border-1 border-gray-100 dark:border-border">
+    <Card className="border border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-lg">Expenses Breakdown</CardTitle>
         <CardDescription>Total expenses {dateRange?.label}</CardDescription>
@@ -109,7 +109,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
                   outerRadius={80}
                   paddingAngle={2}
                   strokeWidth={2}
-                  stroke="#fff"
+                  stroke="var(--card)"
                 >
                   {categories.map((_, index) => (
                     <Cell
@@ -159,7 +159,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
 };
 
 const PieChartSkeleton = () => (
-  <Card className="!shadow-none border-1 border-gray-100 dark:border-border">
+  <Card className="!shadow-none border border-border">
     <CardHeader className="pb-2">
       <Skeleton className="h-6 w-48" />
       <Skeleton className="h-4 w-32 mt-1" />

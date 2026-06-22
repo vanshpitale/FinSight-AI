@@ -227,13 +227,13 @@ const ConfirmationStep = ({
 
         {hasErrors && (
           <div
-            className="w-full block border border-red-100 bg-[#fef2f2] dark:bg-background
+            className="w-full block border border-destructive/20 bg-destructive/10 dark:bg-background
             rounded text-sm max-h-60 overflow-y-auto"
             style={{
               maxHeight: "250px",
             }}
           >
-            <p className="font-medium mb-2 bg-[#fef2f2] dark:bg-background sticky top-0 px-2 py-1">
+            <p className="font-medium mb-2 bg-destructive/10 dark:bg-background sticky top-0 px-2 py-1">
               Issues found:
             </p>
             <div className="space-y-1 p-2">

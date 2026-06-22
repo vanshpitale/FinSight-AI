@@ -176,7 +176,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
       });
   };
   return (
-    <Card className="!border-none !border-0 !gap-0 !bg-white/5">
+    <Card className="!gap-0">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 !pb-5">
         <CardTitle className="text-[15px] text-muted-foreground font-medium">
           {title}
@@ -186,7 +186,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
         <div
           className={cn(
             "text-4xl font-bold",
-            cardType === "balance" && value < 0 ? "text-destructive" : "text-white"
+            cardType === "balance" && value < 0 ? "text-destructive" : "text-slate-900 dark:text-white"
           )}
         >
           <CountUp

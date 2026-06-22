@@ -27,7 +27,7 @@ app.use(passport.initialize());
 
 app.use(
     cors({
-        origin: Env.FRONTEND_ORIGIN,
+        origin: [Env.FRONTEND_ORIGIN, "http://192.168.1.83:5173"],
         credentials: true,
     })
 );
@@ -50,7 +50,7 @@ app.use(errorHandler);
 app.listen(Env.PORT, async () => {
     await connectDB();
 
-    if(Env.NODE_ENV === "development") {
+    if (Env.NODE_ENV === "development") {
         await initializeCrons();
     }
 

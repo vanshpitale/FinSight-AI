@@ -173,7 +173,7 @@ export default function InteractiveCalculator() {
   const handleActionClick = (e: React.MouseEvent<HTMLButtonElement>, action: typeof ACTIONS[0]) => {
     // Generate fly positions
     if (!containerRef.current || !targetRef.current) return;
-    
+
     const containerRect = containerRef.current.getBoundingClientRect();
 
     const startX = e.clientX - containerRect.left;
@@ -298,7 +298,7 @@ export default function InteractiveCalculator() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.01)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:3rem_3rem] pointer-events-none -z-10" />
 
       <div ref={containerRef} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Flying cards animation wrapper */}
         <AnimatePresence>
           {flyingCards.map((card) => {
@@ -338,10 +338,6 @@ export default function InteractiveCalculator() {
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-base/10 border border-secondary-base/20 text-secondary-base">
-            <span className="h-1.5 w-1.5 rounded-full bg-secondary-base animate-ping" />
-            <span className="text-[10px] font-bold uppercase tracking-wider">Live Sandbox Simulation</span>
-          </div>
           <p className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white theme-transition">
             Interact with FinSight AI
           </p>
@@ -352,7 +348,7 @@ export default function InteractiveCalculator() {
 
         {/* Sandbox Content Grid */}
         <div className="grid lg:grid-cols-12 gap-10 items-stretch">
-          
+
           {/* Left Column: Action Tiles (Interactive controls) */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-6">
             <div className="space-y-2 text-center lg:text-left">
@@ -412,10 +408,10 @@ export default function InteractiveCalculator() {
 
           {/* Right Column: Mini-Dashboard Portal */}
           <div className="lg:col-span-7 flex flex-col gap-6">
-            
+
             {/* Dashboard Visual Frame */}
-            <div 
-              ref={targetRef} 
+            <div
+              ref={targetRef}
               className="bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-850 rounded-3xl overflow-hidden shadow-xl dark:shadow-2xl flex flex-col justify-between backdrop-blur-md theme-transition"
             >
               {/* Header metrics card */}
@@ -424,9 +420,6 @@ export default function InteractiveCalculator() {
                   <div className="space-y-1">
                     <h3 className="text-lg font-bold text-slate-900 dark:text-white theme-transition">Alex's Ledger Report</h3>
                     <p className="text-slate-500 text-[10px] uppercase font-bold tracking-wider">Dynamic Sandbox View</p>
-                  </div>
-                  <div className="bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800/80 px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 dark:text-slate-400 theme-transition">
-                    Live Session
                   </div>
                 </div>
 
@@ -480,7 +473,7 @@ export default function InteractiveCalculator() {
 
               {/* Chart & Ledgers details */}
               <div className="p-6 sm:p-8 space-y-6">
-                
+
                 {/* Area Chart view */}
                 <div className="bg-slate-50/50 dark:bg-slate-950/20 border border-slate-200 dark:border-slate-900 p-4.5 rounded-2xl space-y-4 theme-transition">
                   <div className="flex justify-between items-center pb-2 border-b border-slate-150 dark:border-slate-900 theme-transition">

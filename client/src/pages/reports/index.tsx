@@ -18,7 +18,7 @@ export default function Reports() {
         <ScheduleReportDrawer />
       }
     >
-      <Card className="border shadow-none">
+      <Card className="border shadow-none mt-20">
         <CardContent>
           <ReportTable />
         </CardContent>

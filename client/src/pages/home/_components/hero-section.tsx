@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AUTH_ROUTES } from "@/routes/common/routePath";
-import { 
-  ArrowRight, 
-  Sparkles, 
-  TrendingUp, 
-  ArrowDownRight, 
-  Percent, 
-  Lock 
+import {
+  ArrowRight,
+  Sparkles,
+  TrendingUp,
+  ArrowDownRight,
+  Percent,
+  Lock
 } from "lucide-react";
 import { useMousePosition } from "@/hooks/use-mouse-position";
 import { motion } from "framer-motion";
@@ -58,15 +58,9 @@ export default function HeroSection() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-8 items-center">
-          
+
           {/* Left Column: Text & CTAs */}
           <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-200/50 dark:bg-white/5 border border-slate-300/40 dark:border-white/10 backdrop-blur-md theme-transition">
-              <Sparkles className="h-4 w-4 text-tertiary-base animate-pulse" />
-              <span className="text-xs font-semibold tracking-wide bg-gradient-to-r from-secondary-base to-tertiary-base text-transparent bg-clip-text">
-                Next-Gen Financial Intelligence
-              </span>
-            </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-slate-900 dark:text-white theme-transition">
               Take Control of Your Wealth. <br />
@@ -128,13 +122,13 @@ export default function HeroSection() {
 
           {/* Right Column: Visual Dashboard Mockup with 3D Depth */}
           <div className="lg:col-span-6 flex justify-center items-center py-10 relative">
-            
+
             {/* Holographic Glowing Backlight */}
             <div className="absolute w-[380px] h-[380px] bg-secondary-base/5 dark:bg-secondary-base/15 blur-[60px] dark:blur-[90px] rounded-full pointer-events-none" />
 
             {/* 3D Scene Container */}
             <div className="perspective-[1200px] w-full max-w-[500px] aspect-square flex items-center justify-center">
-              
+
               {/* Floating Dashboard Wrapper */}
               <motion.div
                 style={{
@@ -153,7 +147,7 @@ export default function HeroSection() {
                     <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
                   <div className="text-[10px] font-mono text-slate-500 flex items-center gap-1.5 px-3 py-1 bg-slate-100 dark:bg-slate-950/50 border border-slate-200 dark:border-slate-800/40 rounded-full theme-transition">
-                    <Lock className="h-3 w-3 text-secondary-base" /> FINSIGHT_PORTAL
+                    <Lock className="h-3 w-3 text-secondary-base" /> FINSIGHT AI
                   </div>
                 </div>
 
@@ -261,7 +255,7 @@ export default function HeroSection() {
                     <div className="bg-red-500 h-full w-[34%]" />
                   </div>
                 </motion.div>
-                
+
               </motion.div>
             </div>
           </div>

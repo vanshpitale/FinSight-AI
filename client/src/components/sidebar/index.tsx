@@ -47,19 +47,19 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
     <>
       <aside
         className={cn(
-          "flex flex-col h-screen bg-primary-base border-r border-zinc-800 text-white w-64 select-none",
+          "flex flex-col h-screen bg-white text-slate-900 dark:bg-primary-base dark:text-white w-64 select-none border-r",
           className
         )}
       >
         {/* Sidebar Header: Brand Logo & Title */}
-        <div className="h-20 flex items-center justify-between px-6 border-b border-zinc-800 shrink-0">
+        <div className="h-20 flex items-center justify-between px-6 shrink-0">
           <Logo />
           {/* Close button for mobile Sheet if applicable */}
           {onMobileClose && (
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-white hover:bg-white/10 !cursor-pointer"
+              className="md:hidden hover:bg-white/10 !cursor-pointer"
               onClick={onMobileClose}
             >
               <X className="h-5 w-5" />
@@ -80,8 +80,8 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
                 size="default"
                 variant="ghost"
                 className={cn(
-                  "w-full font-medium py-6 px-4 hover:bg-white/5 hover:text-white border-none transition justify-start !bg-transparent text-white/60 !text-[14.5px] cursor-pointer",
-                  isActive && "text-white bg-white/10 hover:bg-white/10 font-semibold border-l-4 border-secondary-base rounded-l-none pl-3"
+                  "w-full font-medium py-6 px-4 border-none transition justify-start !text-[14.5px] cursor-pointer",
+                  isActive && "bg-secondary-base transition-all duration-300 ease-in-out text-white hover:text-white hover:bg-secondary-base"
                 )}
                 onClick={onMobileClose}
                 asChild
@@ -96,7 +96,7 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
         </nav>
 
         {/* Sidebar Footer: User Card */}
-        <div className="p-4 border-t border-zinc-800 shrink-0">
+        <div className="p-4 shrink-0 border-t">
           <UserNav
             userName={user?.name || ""}
             profilePicture={user?.profilePicture || ""}

@@ -11,14 +11,14 @@ const AppLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen w-full bg-zinc-50 dark:bg-zinc-950">
+    <div className="flex min-h-screen w-full bg-[var(--bg-color)] dark:bg-[#151e33]">
       {/* Desktop Sidebar (hidden on mobile) */}
       <Sidebar className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 z-20" />
 
       {/* Content wrapper */}
       <div className="flex flex-col flex-1 min-h-screen md:pl-64 w-full">
         {/* Mobile top-bar */}
-        <header className="flex md:hidden items-center justify-between px-6 py-4 bg-primary-base text-white border-b border-zinc-800 sticky top-0 z-30 h-16 shrink-0">
+        <header className="flex md:hidden items-center justify-between px-6 py-4 bg-primary-base text-white border-b border-slate-800 sticky top-0 z-30 h-16 shrink-0">
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"
@@ -34,7 +34,7 @@ const AppLayout = () => {
 
         {/* Mobile Drawer (Sheet) */}
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
-          <SheetContent side="left" className="p-0 w-64 bg-primary-base border-r border-zinc-800 text-white [&>button]:text-white">
+          <SheetContent side="left" className="p-0 w-64 bg-primary-base border-r border-slate-800 text-white [&>button]:text-white">
             <Sidebar className="flex h-full w-full border-r-0" onMobileClose={() => setIsMobileOpen(false)} />
           </SheetContent>
         </Sheet>

@@ -19,22 +19,22 @@ const PageLayout = ({ children, className,
   showHeader = true,
   addMarginTop = false,
   renderPageHeader,
- }: PropsType) => {
+}: PropsType) => {
   return (
     <div>
       {showHeader && (
-        <PageHeader 
-          title={title} 
-          subtitle={subtitle} 
-          rightAction={rightAction} 
+        <PageHeader
+          title={title}
+          subtitle={subtitle}
+          rightAction={rightAction}
           renderPageHeader={renderPageHeader}
         />
       )}
-    <div className={cn("w-full max-w-[var(--max-width)] mx-auto pt-8",
-      addMarginTop && "-mt-20",
-      className)}>
-      {children}
-    </div>
+      <div className={cn("w-full max-w-[var(--max-width)] mx-auto pt-8",
+        addMarginTop && "-mt-20",
+        className)}>
+        {children}
+      </div>
     </div>
   );
 };

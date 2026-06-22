@@ -60,9 +60,9 @@ const DashboardDataChart: React.FC<PropsType> = (props) => {
   }
 
   return (
-    <Card className="!shadow-none border-1 border-gray-100 dark:border-border !pt-0">
-      <CardHeader className="flex flex-col items-stretch !space-y-0 border-b border-gray-100
-      dark:border-border !p-0 pr-1 sm:flex-row">
+    <Card className="border border-border !pt-0">
+      <CardHeader className="flex flex-col items-stretch !space-y-0 border-b border-border
+      !p-0 pr-1 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-0 sm:py-0">
           <CardTitle className="text-lg">Transaction Overview</CardTitle>
           <CardDescription>
@@ -76,7 +76,7 @@ const DashboardDataChart: React.FC<PropsType> = (props) => {
               <div
                 key={chart}
                 className="flex flex-1 flex-col justify-center gap-1 px-6 py-4 text-center even:border-l 
-                sm:border-l border-gray-100 dark:border-border sm:px-4 sm:py-6 min-w-36"
+                sm:border-l border-border sm:px-4 sm:py-6 min-w-36"
               >
                 <span className="w-full block text-xs text-muted-foreground">
                   No of {chartConfig[chart].label}
@@ -138,7 +138,7 @@ const DashboardDataChart: React.FC<PropsType> = (props) => {
                 tickFormatter={(value) => format(new Date(value), isMobile ? "MMM d" : "MMMM d, yyyy")}
               />
               <ChartTooltip
-                cursor={{ stroke: '#94a3b8', strokeWidth: 1, strokeDasharray: '3 3' }}
+                cursor={{ stroke: 'var(--muted-foreground)', strokeWidth: 1, strokeDasharray: '3 3' }}
                 content={
                   <ChartTooltipContent
                     labelFormatter={(value) => format(new Date(value), "MMM d, yyyy")}
@@ -187,8 +187,8 @@ const DashboardDataChart: React.FC<PropsType> = (props) => {
 
 
 const ChartSkeleton = () => (
-  <Card className="!shadow-none border-1 border-gray-100 dark:border-border !pt-0">
-    <CardHeader className="flex flex-col items-stretch !space-y-0 border-b border-gray-100 dark:border-border !p-0 pr-1 sm:flex-row">
+  <Card className="!shadow-none border border-border !pt-0">
+    <CardHeader className="flex flex-col items-stretch !space-y-0 border-b border-border !p-0 pr-1 sm:flex-row">
       <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-0 sm:py-0">
         <Skeleton className="h-6 w-48" />
         <Skeleton className="h-4 w-32 mt-1" />
@@ -198,7 +198,7 @@ const ChartSkeleton = () => (
           <div
             key={i}
             className="flex flex-1 flex-col justify-center gap-1 px-6 py-4 text-center even:border-l 
-            sm:border-l border-gray-100 dark:border-border sm:px-4 sm:py-6 min-w-36"
+            sm:border-l border-border sm:px-4 sm:py-6 min-w-36"
           >
             <Skeleton className="h-4 w-20 mx-auto" />
             <Skeleton className="h-8 w-24 mx-auto mt-1 sm:h-12" />

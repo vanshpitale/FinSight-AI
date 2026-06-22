@@ -67,7 +67,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
     const rect = card.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
-    
+
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
 
@@ -108,9 +108,9 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
       className={className}
     >
       {/* Light shine reflection effect layer */}
-      <div 
-        className="absolute inset-0 pointer-events-none rounded-2xl transition-opacity duration-300 z-20" 
-        style={shineStyle} 
+      <div
+        className="absolute inset-0 pointer-events-none rounded-2xl transition-opacity duration-300 z-20"
+        style={shineStyle}
       />
       {children}
     </motion.div>
@@ -130,9 +130,6 @@ export default function FeaturesGrid() {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-tertiary-base/10 border border-tertiary-base/20 text-tertiary-base text-xs font-semibold">
-            Capabilities
-          </div>
           <p className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white theme-transition">
             Smart tools to simplify your financial life
           </p>

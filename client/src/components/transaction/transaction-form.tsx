@@ -492,7 +492,7 @@ const TransactionForm = (props: {
             />
           </div>
 
-          <div className="sticky bottom-0 bg-white dark:bg-background pb-2">
+          <div className="sticky bottom-0 bg-background pb-2">
             <Button type="submit" className="w-full !text-white" disabled={isScanning || isCreating || isUpdating}>
               {isCreating || isUpdating ? (
                 <Loader className="h-4 w-4 animate-spin" />

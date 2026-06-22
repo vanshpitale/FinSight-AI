@@ -37,21 +37,21 @@ export function UserNav({
               className="object-cover"
             />
             <AvatarFallback
-              className="!bg-[var(--secondary-dark-color)] border border-zinc-700 !text-white text-xs font-bold"
+              className="!bg-[var(--secondary-dark-color)] border border-slate-700 !text-white text-xs font-bold"
             >
               {userName.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0 flex flex-col text-left">
-            <span className="text-xs font-semibold text-white truncate leading-none mb-1">{userName}</span>
-            <span className="text-[10px] text-gray-400 truncate leading-none">Free Trial</span>
+            <span className="text-sm font-semibold text-slate-900 dark:text-white truncate leading-none mb-1">{userName}</span>
+            <span className="text-[12px] text-slate-400 truncate leading-none">Free Trial</span>
           </div>
-          <ChevronDown className="h-3 w-3 text-gray-400 shrink-0" />
+          <ChevronDown className="h-3 w-3 text-slate-400 shrink-0" />
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
-        className="w-56 bg-primary-base border-zinc-800 text-white shadow-xl"
+        className="w-56 bg-primary-base border-slate-800 text-white shadow-xl"
         align="start"
         side="top"
         sideOffset={12}
@@ -59,12 +59,12 @@ export function UserNav({
       >
         <DropdownMenuLabel className="flex flex-col items-start gap-1 p-2">
           <span className="font-semibold text-sm">{userName}</span>
-          <span className="text-[11px] text-gray-400 font-light">Free Trial (2 days left)</span>
+          <span className="text-[11px] text-slate-400 font-light">Free Trial (2 days left)</span>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-zinc-800" />
+        <DropdownMenuSeparator className="bg-slate-800" />
         <DropdownMenuGroup>
           <DropdownMenuItem
-            className="hover:!bg-white/10 hover:!text-white text-zinc-350 cursor-pointer focus:bg-white/10 focus:text-white"
+            className="hover:!bg-white/10 hover:!text-white text-slate-300 cursor-pointer focus:bg-white/10 focus:text-white"
             onClick={onLogout}
           >
             <LogOut className="w-4 h-4 mr-2" />

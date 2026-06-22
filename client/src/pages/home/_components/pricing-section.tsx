@@ -62,7 +62,8 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="py-24 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 theme-transition relative overflow-hidden">
       {/* Inline styles for custom gradient animation */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes rotate-gradient {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
@@ -77,12 +78,9 @@ export default function PricingSection() {
       <div className="absolute bottom-10 left-1/4 w-[380px] h-[380px] bg-secondary-base/3 dark:bg-secondary-base/5 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-base/10 border border-secondary-base/20 text-secondary-base text-xs font-semibold">
-            Flexible Plans
-          </div>
           <p className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white theme-transition">
             A plan designed for every net worth
           </p>
@@ -94,21 +92,19 @@ export default function PricingSection() {
           <div className="inline-flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-1 rounded-full theme-transition">
             <button
               onClick={() => setBillingPeriod("monthly")}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                billingPeriod === "monthly"
+              className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${billingPeriod === "monthly"
                   ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
                   : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
+                }`}
             >
               Monthly
             </button>
             <button
               onClick={() => setBillingPeriod("yearly")}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
-                billingPeriod === "yearly"
+              className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${billingPeriod === "yearly"
                   ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
                   : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-              }`}
+                }`}
             >
               Yearly
               <span className="bg-white/20 text-white px-2 py-0.5 rounded-full text-[9px] font-black">
@@ -122,14 +118,14 @@ export default function PricingSection() {
         <div className="grid md:grid-cols-3 gap-8 items-stretch max-w-5xl mx-auto">
           {TIERS.map((tier, idx) => {
             const price = billingPeriod === "monthly" ? tier.priceMonthly : tier.priceYearly;
-            
+
             if (tier.popular) {
               return (
                 /* Glowing Border Card (Wealth Pro - popular) */
                 <div key={idx} className="relative group p-[1.5px] rounded-3xl overflow-hidden scale-105 z-10">
                   {/* Rotating Gradient Border */}
-                  <div 
-                    className="absolute inset-0 opacity-100" 
+                  <div
+                    className="absolute inset-0 opacity-100"
                     style={{
                       background: 'linear-gradient(270deg, #4F46E5, #8B5CF6, #4F46E5)',
                       backgroundSize: '200% 200%',

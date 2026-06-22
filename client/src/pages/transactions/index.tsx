@@ -21,7 +21,7 @@ export default function Transactions() {
         </div>
       }
     >
-      <Card className="border-0 shadow-none">
+      <Card className="border-0 shadow-none mt-20">
         <CardContent className="pt-2">
           <TransactionTable pageSize={20} />
         </CardContent>

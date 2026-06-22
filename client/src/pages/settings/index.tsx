@@ -27,7 +27,7 @@ const Settings = () => {
       subtitle="Manage your account settings and set e-mail preferences."
       addMarginTop
     >
-      <Card className="border shadow-none">
+      <Card className="border shadow-none mt-20">
         <CardContent>
           <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12
          lg:space-y-0 pb-10 pt-2">

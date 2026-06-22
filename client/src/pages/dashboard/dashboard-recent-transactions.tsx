@@ -7,7 +7,7 @@ import { PROTECTED_ROUTES } from "@/routes/common/routePath"
 
 const DashboardRecentTransactions = () => {
   return (
-    <Card className="!shadow-none border border-border">
+    <Card className="border border-border">
       <CardHeader className="!pb-0">
         <CardTitle className="text-xl">Recent Transactions</CardTitle>
         <CardDescription>Showing all recent transactions</CardDescription>
