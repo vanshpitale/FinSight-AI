@@ -3,37 +3,37 @@ import { formatCurrency } from "../../utils/format-currency.js";
 import { capitalizeFirstLetter } from "../../utils/helper.js";
 
 export const getReportEmailTemplate = (
-    reportData: ReportType & { username: string },
-    frequency: string
+  reportData: ReportType & { username: string },
+  frequency: string
 ) => {
-    const {
-        username,
-        period,
-        totalIncome,
-        totalExpense,
-        availableBalance,
-        savingsRate,
-        topSpendingCategories,
-        insights,
-    } = reportData;
+  const {
+    username,
+    period,
+    totalIncome,
+    totalExpense,
+    availableBalance,
+    savingsRate,
+    topSpendingCategories,
+    insights,
+  } = reportData;
 
-    const reportTitle = `${capitalizeFirstLetter(frequency)} Report`;
+  const reportTitle = `${capitalizeFirstLetter(frequency)} Report`;
 
-    const categoryList = topSpendingCategories
-        .map(
-            (cat: any) => `<li>
+  const categoryList = topSpendingCategories
+    .map(
+      (cat: any) => `<li>
       ${cat.name} - ${formatCurrency(cat.amount)} (${cat.percent}%)
       </li>
     `
-        )
-        .join("");
+    )
+    .join("");
 
-    const insightsList = insights
-        .map((insight: string) => `<li>${insight}</li>`)
-        .join("");
+  const insightsList = insights
+    .map((insight: string) => `<li>${insight}</li>`)
+    .join("");
 
-    const currentYear = new Date().getFullYear();
-    return `
+  const currentYear = new Date().getFullYear();
+  return `
   <!DOCTYPE html>
  <html lang="en">
    <head>
@@ -90,7 +90,7 @@ export const getReportEmailTemplate = (
              </tr>
              <tr>
                <td style="background-color: #f0f0f0; text-align: center; padding: 15px; font-size: 12px; color: #999;">
-                 &copy; ${currentYear} Finora. All rights reserved.
+                 &copy; ${currentYear} FinSight AI. All rights reserved.
                </td>
              </tr>
            </table>
