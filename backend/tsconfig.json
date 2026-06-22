@@ -8,9 +8,11 @@
     // See also https://aka.ms/tsconfig/module
     "target": "ES2021",
     "module": "CommonJS",
-    "moduleResolution": "Node",
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     // "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -38,6 +40,14 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["./src/**/*.ts", "src/@types/**/*.ts"],
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "include": [
+    "./src/**/*.ts",
+    "src/@types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "dist",
+    "**/*spec.ts"
+  ]
 }
