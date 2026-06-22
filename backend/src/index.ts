@@ -33,7 +33,6 @@ app.use(
 );
 
 app.get("/", asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    throw new BadRequestException("Test error");
     res.status(HTTPSTATUS.OK).json({
         message: "Welcome to the FinSight AI API!"
     });
