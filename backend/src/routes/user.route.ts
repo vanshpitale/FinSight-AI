@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { getCurentUserController, updateUserController } from '../controllers/user.controller';
-import { upload } from '../config/cloudinary.config';
+import { getCurentUserController, updateUserController } from "../controllers/user.controller.js";
+import { upload } from "../config/cloudinary.config.js";
 
 const userRoutes = Router();
 

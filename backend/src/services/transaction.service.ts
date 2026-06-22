@@ -1,12 +1,12 @@
 
-import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
-import { calculateNextOccurance } from "../utils/helper";
-import { CreateTransactionType, UpdateTransactionType } from "../validators/transaction.validator";
-import { BadRequestException, NotFoundException } from "../utils/app-error";
+import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model.js";
+import { calculateNextOccurance } from "../utils/helper.js";
+import { CreateTransactionType, UpdateTransactionType } from "../validators/transaction.validator.js";
+import { BadRequestException, NotFoundException } from "../utils/app-error.js";
 import axios from "axios";
-import { genAI, genAIModel } from "../config/google-ai.config";
+import { genAI, genAIModel } from "../config/google-ai.config.js";
 import { createPartFromBase64, createUserContent } from "@google/genai";
-import { receiptPrompt } from "../utils/prompt";
+import { receiptPrompt } from "../utils/prompt.js";
 
 export const createTransactionService = async (body: CreateTransactionType, userId: string) => {
     // Service logic to create a transaction

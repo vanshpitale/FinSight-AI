@@ -1,8 +1,8 @@
-import { HTTPSTATUS } from "../config/http.config";
-import { asyncHandler } from "../middlewares/asyncHandler.middleware"
+import { HTTPSTATUS } from "../config/http.config.js";
+import { asyncHandler } from "../middlewares/asyncHandler.middleware.js"
 import { Request, Response } from "express";
-import { generateReportService, getAllReportsService, updateReportSettingService } from "../services/report.service";
-import { updateReportSettingSchema } from "../validators/report.validator";
+import { generateReportService, getAllReportsService, updateReportSettingService } from "../services/report.service.js";
+import { updateReportSettingSchema } from "../validators/report.validator.js";
 
 
 export const getAllReportsController = asyncHandler(async (req: Request, res: Response) => {

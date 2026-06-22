@@ -1,11 +1,11 @@
 import { endOfMonth, format, startOfMonth, subMonths } from "date-fns";
-import ReportSettingModel from "../../models/report-setting.model";
-import { UserDocument } from "../../models/user.model";
+import ReportSettingModel from "../../models/report-setting.model.js";
+import { UserDocument } from "../../models/user.model.js";
 import mongoose from "mongoose";
-import { generateReportService } from "../../services/report.service";
-import ReportModel, { ReportStatusEnum } from "../../models/report.model";
-import { calculateNextReportDate } from "../../utils/helper";
-import { sendReportEmail } from "../../mailers/report.mailer";
+import { generateReportService } from "../../services/report.service.js";
+import ReportModel, { ReportStatusEnum } from "../../models/report.model.js";
+import { calculateNextReportDate } from "../../utils/helper.js";
+import { sendReportEmail } from "../../mailers/report.mailer.js";
 
 export const processReportJob = async () => {
     const now = new Date();

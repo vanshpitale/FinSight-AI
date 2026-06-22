@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
-import ReportSettingModel, { ReportFrequencyEnum } from "../models/report-setting.model";
-import ReportModel from "../models/report.model";
-import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
-import { NotFoundException } from "../utils/app-error";
-import { calculateNextReportDate } from "../utils/helper";
-import { UpdateReportSettingType } from "../validators/report.validator";
+import ReportSettingModel, { ReportFrequencyEnum } from "../models/report-setting.model.js";
+import ReportModel from "../models/report.model.js";
+import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model.js";
+import { NotFoundException } from "../utils/app-error.js";
+import { calculateNextReportDate } from "../utils/helper.js";
+import { UpdateReportSettingType } from "../validators/report.validator.js";
 import { format } from "date-fns";
-import { genAI, genAIModel } from "../config/google-ai.config";
+import { genAI, genAIModel } from "../config/google-ai.config.js";
 import { createUserContent } from "@google/genai";
-import { reportInsightPrompt } from '../utils/prompt'
+import { reportInsightPrompt } from "../utils/prompt.js"
 
 export const getAllReportsService = async (userId: string, pagination: { pageSize: number, pageNumber: number }) => {
     const query: Record<string, any> = { userId };

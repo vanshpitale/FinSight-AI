@@ -1,7 +1,7 @@
 import { Strategy as JwtStrategy, ExtractJwt, StrategyOptions } from 'passport-jwt';
 import passport from 'passport';
-import { Env } from './env.config';
-import { findByIdUserService } from '../services/user.service';
+import { Env } from "./env.config.js";
+import { findByIdUserService } from "../services/user.service.js";
 
 
 interface JwtPayload {

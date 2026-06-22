@@ -1,21 +1,21 @@
 import "dotenv/config";
-import "./config/passport.config"
+import "./config/passport.config.js"
 import express, { NextFunction, Request, Response } from "express";
-import { Env } from "./config/env.config";
+import { Env } from "./config/env.config.js";
 import cors from "cors";
 import passport from "passport";
-import { HTTPSTATUS } from "./config/http.config";
-import { errorHandler } from "./middlewares/errorHandler.middleware";
-import { BadRequestException } from "./utils/app-error";
-import { asyncHandler } from "./middlewares/asyncHandler.middleware";
-import connectDB from "./config/database.config";
-import authRoutes from "./routes/auth.route";
-import { passportAuthenticateJwt } from "./config/passport.config";
-import userRoutes from "./routes/user.route";
-import transactionRoutes from "./routes/transaction.route";
-import { initializeCrons } from "./crons";
-import reportRoutes from "./routes/report.route";
-import analyticsRoute from "./routes/analytics.route";
+import { HTTPSTATUS } from "./config/http.config.js";
+import { errorHandler } from "./middlewares/errorHandler.middleware.js";
+import { BadRequestException } from "./utils/app-error.js";
+import { asyncHandler } from "./middlewares/asyncHandler.middleware.js";
+import connectDB from "./config/database.config.js";
+import authRoutes from "./routes/auth.route.js";
+import { passportAuthenticateJwt } from "./config/passport.config.js";
+import userRoutes from "./routes/user.route.js";
+import transactionRoutes from "./routes/transaction.route.js";
+import { initializeCrons } from "./crons/index.js";
+import reportRoutes from "./routes/report.route.js";
+import analyticsRoute from "./routes/analytics.route.js";
 
 const app = express();
 const BASE_PATH = Env.BASE_PATH;

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { asyncHandler } from "../middlewares/asyncHandler.middleware";
-import { findByIdUserService, updateUserService } from "../services/user.service";
-import { HTTPSTATUS } from "../config/http.config";
-import { updateUserSchema } from "../validators/user.validator";
+import { asyncHandler } from "../middlewares/asyncHandler.middleware.js";
+import { findByIdUserService, updateUserService } from "../services/user.service.js";
+import { HTTPSTATUS } from "../config/http.config.js";
+import { updateUserSchema } from "../validators/user.validator.js";
 
 
 export const getCurentUserController = asyncHandler(

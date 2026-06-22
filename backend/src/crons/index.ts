@@ -1,4 +1,4 @@
-import { startJobs } from "./scheduler";
+import { startJobs } from "./scheduler.js";
 
 export const initializeCrons = async () => {
     try {

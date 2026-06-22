@@ -1,5 +1,5 @@
 import jwt, { JsonWebTokenError, JwtPayload, SignOptions } from 'jsonwebtoken';
-import { Env } from '../config/env.config';
+import { Env } from "../config/env.config.js";
 
 type TimeUnit = 's' | 'm' | 'h' | 'd' | 'w' | 'y';
 type TimeString = `${number}${TimeUnit}`;

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { asyncHandler } from "../middlewares/asyncHandler.middleware";
-import { HTTPSTATUS } from "../config/http.config";
-import { bulkDeleteTransactionSchema, bulkTransactionSchema, createTransactionSchema, transactionIdSchema, updateTransactionSchema } from "../validators/transaction.validator";
-import { bulkDeleteTransactionService, bulkTransactionService, createTransactionService, deleteTransactionService, duplicateTransactionService, getAllTransactionService, getTransactionByIdService, scanReceiptService, updateTransactionService } from "../services/transaction.service";
-import { TransactionTypeEnum } from "../models/transaction.model";
+import { asyncHandler } from "../middlewares/asyncHandler.middleware.js";
+import { HTTPSTATUS } from "../config/http.config.js";
+import { bulkDeleteTransactionSchema, bulkTransactionSchema, createTransactionSchema, transactionIdSchema, updateTransactionSchema } from "../validators/transaction.validator.js";
+import { bulkDeleteTransactionService, bulkTransactionService, createTransactionService, deleteTransactionService, duplicateTransactionService, getAllTransactionService, getTransactionByIdService, scanReceiptService, updateTransactionService } from "../services/transaction.service.js";
+import { TransactionTypeEnum } from "../models/transaction.model.js";
 
 
 export const createTransactionController = asyncHandler(async (req: Request, res: Response) => {

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { chartAnalyticsContoller, expensePieChartBreakdownController, summaryAnalyticsController } from '../controllers/analytics.controller';
+import { chartAnalyticsContoller, expensePieChartBreakdownController, summaryAnalyticsController } from "../controllers/analytics.controller.js";
 
 const analyticsRoute = Router();
 

@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { HTTPSTATUS } from "../config/http.config";
-import { asyncHandler } from "../middlewares/asyncHandler.middleware";
-import { loginSchema, registerSchema } from "../validators/zod.validator";
-import { loginService, registerService } from "../services/auth.service";
+import { HTTPSTATUS } from "../config/http.config.js";
+import { asyncHandler } from "../middlewares/asyncHandler.middleware.js";
+import { loginSchema, registerSchema } from "../validators/zod.validator.js";
+import { loginService, registerService } from "../services/auth.service.js";
 
 
 export const registerController = asyncHandler(

@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import UserModel from "../models/user.model";
-import { NotFoundException, UnauthorizedException } from "../utils/app-error";
-import { LoginSchemaType, RegisterSchemaType } from "../validators/zod.validator";
-import ReportSettingModel, { ReportFrequencyEnum } from "../models/report-setting.model";
-import { calculateNextReportDate } from "../utils/helper";
-import { signJwtToken } from "../utils/jwt";
+import UserModel from "../models/user.model.js";
+import { NotFoundException, UnauthorizedException } from "../utils/app-error.js";
+import { LoginSchemaType, RegisterSchemaType } from "../validators/zod.validator.js";
+import ReportSettingModel, { ReportFrequencyEnum } from "../models/report-setting.model.js";
+import { calculateNextReportDate } from "../utils/helper.js";
+import { signJwtToken } from "../utils/jwt.js";
 
 
 export const registerService = async (body: RegisterSchemaType) => {

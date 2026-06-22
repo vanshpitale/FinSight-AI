@@ -1,7 +1,7 @@
 import mongoose, { PipelineStage } from "mongoose";
-import { DateRangeEnum, DateRangePreset } from "../enums/date-range.enum"
-import { getDateRange } from "../utils/date";
-import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model";
+import { DateRangeEnum, DateRangePreset } from "../enums/date-range.enum.js"
+import { getDateRange } from "../utils/date.js";
+import TransactionModel, { TransactionTypeEnum } from "../models/transaction.model.js";
 import { differenceInDays, subDays, subYears } from "date-fns";
 
 export const summaryAnalyticsService = async (

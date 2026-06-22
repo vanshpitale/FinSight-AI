@@ -1,5 +1,5 @@
-import { Env } from "../config/env.config";
-import { resend } from "../config/resend.config";
+import { Env } from "../config/env.config.js";
+import { resend } from "../config/resend.config.js";
 
 type Params = {
   to: string | string[];

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { bulkDeleteTransactionController, bulkTransactionController, createTransactionController, deleteTransactionController, duplicateTransactionController, getAllTransactionController, getTransactionByIdController, scanReceiptController, updateTransactionController } from '../controllers/transaction.controller';
-import { upload } from '../config/cloudinary.config';
+import { bulkDeleteTransactionController, bulkTransactionController, createTransactionController, deleteTransactionController, duplicateTransactionController, getAllTransactionController, getTransactionByIdController, scanReceiptController, updateTransactionController } from "../controllers/transaction.controller.js";
+import { upload } from "../config/cloudinary.config.js";
 
 const transactionRoutes = Router();
 

@@ -1,6 +1,6 @@
-import UserModel from "../models/user.model";
-import { NotFoundException } from "../utils/app-error";
-import { UpdateUserType } from "../validators/user.validator";
+import UserModel from "../models/user.model.js";
+import { NotFoundException } from "../utils/app-error.js";
+import { UpdateUserType } from "../validators/user.validator.js";
 
 export const findByIdUserService = async (userId: string) => {
     const user = await UserModel.findById(userId);

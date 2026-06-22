@@ -1,9 +1,9 @@
 import { ZodError } from "zod";
 import { ErrorRequestHandler } from "express";
-import { HTTPSTATUS } from "../config/http.config";
-import { AppError } from "../utils/app-error";
+import { HTTPSTATUS } from "../config/http.config.js";
+import { AppError } from "../utils/app-error.js";
 import { Response } from "express-serve-static-core";
-import { ErrorCodeEnum } from "../enums/error-code.enum";
+import { ErrorCodeEnum } from "../enums/error-code.enum.js";
 import { MulterError } from "multer";
 
 const formatZodError = (res: Response, err: ZodError) => {
