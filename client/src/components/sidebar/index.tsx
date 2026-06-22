@@ -59,7 +59,7 @@ const Sidebar = ({ className, onMobileClose }: SidebarProps) => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden hover:bg-white/10 !cursor-pointer"
+              className="lg:hidden hover:bg-white/10 !cursor-pointer"
               onClick={onMobileClose}
             >
               <X className="h-5 w-5" />

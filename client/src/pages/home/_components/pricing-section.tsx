@@ -122,7 +122,7 @@ export default function PricingSection() {
             if (tier.popular) {
               return (
                 /* Glowing Border Card (Wealth Pro - popular) */
-                <div key={idx} className="relative group p-[1.5px] rounded-3xl overflow-hidden scale-105 z-10">
+                <div key={idx} className="relative group p-[1.5px] rounded-3xl overflow-hidden md:scale-105 z-10">
                   {/* Rotating Gradient Border */}
                   <div
                     className="absolute inset-0 opacity-100"

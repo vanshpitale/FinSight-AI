@@ -185,7 +185,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
       <CardContent className="space-y-5">
         <div
           className={cn(
-            "text-4xl font-bold",
+            "text-2xl sm:text-3xl xl:text-4xl font-bold",
             cardType === "balance" && value < 0 ? "text-destructive" : "text-slate-900 dark:text-white"
           )}
         >

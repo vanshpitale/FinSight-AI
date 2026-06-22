@@ -13,12 +13,12 @@ const AppLayout = () => {
   return (
     <div className="flex min-h-screen w-full bg-[var(--bg-color)] dark:bg-[#151e33]">
       {/* Desktop Sidebar (hidden on mobile) */}
-      <Sidebar className="hidden md:flex fixed top-0 bottom-0 left-0 w-64 z-20" />
+      <Sidebar className="hidden lg:flex fixed top-0 bottom-0 left-0 w-64 z-20" />
 
       {/* Content wrapper */}
-      <div className="flex flex-col flex-1 min-h-screen md:pl-64 w-full">
+      <div className="flex flex-col flex-1 min-h-screen lg:pl-64 w-full">
         {/* Mobile top-bar */}
-        <header className="flex md:hidden items-center justify-between px-6 py-4 bg-primary-base text-white border-b border-slate-800 sticky top-0 z-30 h-16 shrink-0">
+        <header className="flex lg:hidden items-center justify-between px-6 py-4 bg-primary-base text-white border-b border-slate-800 sticky top-0 z-30 h-16 shrink-0">
           <div className="flex items-center gap-3">
             <Button
               variant="ghost"

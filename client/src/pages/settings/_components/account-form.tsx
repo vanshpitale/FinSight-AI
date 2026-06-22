@@ -99,7 +99,7 @@ export function AccountForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <div className="flex flex-col items-start space-y-4">
           <FormLabel>Profile Picture</FormLabel>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <Avatar className="h-20 w-20">
               <AvatarImage src={avatarUrl || user?.profilePicture || ""} className="!object-cover !object-center" />
               <AvatarFallback className="text-2xl">

@@ -83,7 +83,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
         <CardTitle className="text-lg">Expenses Breakdown</CardTitle>
         <CardDescription>Total expenses {dateRange?.label}</CardDescription>
       </CardHeader>
-      <CardContent className="h-[313px]">
+      <CardContent className="h-auto min-h-[313px] pb-4">
         <div className=" w-full">
           {categories?.length === 0 ? (
             <EmptyState
@@ -164,7 +164,7 @@ const PieChartSkeleton = () => (
       <Skeleton className="h-6 w-48" />
       <Skeleton className="h-4 w-32 mt-1" />
     </CardHeader>
-    <CardContent className="h-[313px]">
+    <CardContent className="h-auto min-h-[313px] pb-4">
       <div className="w-full flex items-center justify-center">
         <div className="relative w-[200px] h-[200px]">
           <Skeleton className="rounded-full w-full h-full" />

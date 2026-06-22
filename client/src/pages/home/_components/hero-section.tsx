@@ -127,7 +127,7 @@ export default function HeroSection() {
             <div className="absolute w-[380px] h-[380px] bg-secondary-base/5 dark:bg-secondary-base/15 blur-[60px] dark:blur-[90px] rounded-full pointer-events-none" />
 
             {/* 3D Scene Container */}
-            <div className="perspective-[1200px] w-full max-w-[500px] aspect-square flex items-center justify-center">
+            <div className="perspective-[1200px] w-full max-w-[500px] aspect-square flex items-center justify-center scale-[0.8] min-[375px]:scale-[0.85] sm:scale-100">
 
               {/* Floating Dashboard Wrapper */}
               <motion.div
@@ -137,7 +137,7 @@ export default function HeroSection() {
                   rotateY: rotateY,
                 }}
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                className="relative w-[340px] sm:w-[400px] aspect-square bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 backdrop-blur-md shadow-xl dark:shadow-2xl flex flex-col justify-between theme-transition"
+                className="relative w-full max-w-[280px] min-[375px]:max-w-[320px] sm:max-w-[400px] aspect-square bg-white/80 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 backdrop-blur-md shadow-xl dark:shadow-2xl flex flex-col justify-between theme-transition"
               >
                 {/* Mini Glass Header */}
                 <div className="flex justify-between items-center border-b border-slate-200/60 dark:border-slate-800/80 pb-4 theme-transition">

@@ -63,13 +63,13 @@ const DashboardDataChart: React.FC<PropsType> = (props) => {
     <Card className="border border-border !pt-0">
       <CardHeader className="flex flex-col items-stretch !space-y-0 border-b border-border
       !p-0 pr-1 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-0 sm:py-0">
+        <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-4 sm:py-0">
           <CardTitle className="text-lg">Transaction Overview</CardTitle>
           <CardDescription>
             <span>Showing total transactions {dateRange?.label}</span>
           </CardDescription>
         </div>
-        <div className="flex">
+        <div className="flex border-t border-border sm:border-t-0">
           {TRANSACTION_TYPES.map((key) => {
             const chart = key as keyof typeof chartConfig
             return (

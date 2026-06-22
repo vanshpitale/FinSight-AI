@@ -50,7 +50,7 @@ function SidebarNav({ items }: ItemPropsType) {
   return (
     <nav
       className={
-        "flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1"}
+        "flex flex-wrap gap-2 lg:flex-col lg:space-x-0 lg:space-y-1"}
     >
       {items.map((item) => (
         <Link

@@ -71,8 +71,8 @@ export function DataTablePagination({
         </div>
 
         {/* Page Info */}
-        <div className="flex items-center">
-          <div className="flex lg:w-[100px] items-center justify-center text-sm font-medium">
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          <div className="text-sm font-medium whitespace-nowrap">
             Page {pageNumber} of {totalPages}
           </div>
 
@@ -89,7 +89,7 @@ export function DataTablePagination({
               <ChevronLeft /> Previous
             </Button>
 
-            <div className="flex items-center space-x-1">
+            <div className="hidden sm:flex items-center space-x-1">
             {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
               let pageNum;
               if (totalPages <= 5) {

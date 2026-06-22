@@ -141,6 +141,23 @@ export function DataTable<TData>({
     setRowSelection({});
   };
 
+  const getColumnVisibilityClass = (columnId: string) => {
+    switch (columnId) {
+      case "createdAt":
+        return "hidden md:table-cell";
+      case "paymentMethod":
+        return "hidden lg:table-cell";
+      case "recurringInterval":
+        return "hidden md:table-cell";
+      case "date":
+        return "hidden sm:table-cell";
+      case "-":
+        return "hidden sm:table-cell";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className="w-full">
       {/* Top Bar: Search & Filters */}
@@ -223,7 +240,10 @@ export function DataTable<TData>({
                   {group.headers.map((header) => (
                     <TableHead
                       key={header.id}
-                      className="!font-medium !text-[13px]"
+                      className={cn(
+                        "!font-medium !text-[13px]",
+                        getColumnVisibilityClass(header.column.id)
+                      )}
                     >
                       {flexRender(
                         header.column.columnDef.header,
@@ -242,7 +262,13 @@ export function DataTable<TData>({
                     data-state={row.getIsSelected() && "selected"}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} className="!text-[13.3px]">
+                      <TableCell
+                        key={cell.id}
+                        className={cn(
+                          "!text-[13.3px]",
+                          getColumnVisibilityClass(cell.column.id)
+                        )}
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()

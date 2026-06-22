@@ -15,7 +15,7 @@ const DashboardHeader = ({ title, subtitle, dateRange, setDateRange }: Props) =>
         <h2 className="text-2xl lg:text-4xl font-medium">{title}</h2>
         <p className="text-slate-600 dark:text-slate-400 text-sm">{subtitle}</p>
       </div>
-      <div className="flex justify-end gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start sm:justify-end gap-3.5 mb-6 w-full sm:w-auto">
         <DateRangeSelect dateRange={dateRange || null} setDateRange={(range) => setDateRange?.(range)} />
         <AddTransactionDrawer />
       </div>
