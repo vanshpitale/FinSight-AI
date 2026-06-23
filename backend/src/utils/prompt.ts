@@ -1,4 +1,5 @@
 import { PaymentMethodEnum } from "../models/transaction.model.js";
+import { AIInsightsContext } from "../services/insights.service.js";
 
 export const receiptPrompt = `
 You are a financial assistant that helps users analyze and extract transaction details from receipt image (base64 encoded)
@@ -89,4 +90,102 @@ ${categoryList}
 ⚠️ Output only a **JSON array of 3 strings**. Do not include any explanation, markdown, or notes.
   
   `.trim();
+};
+
+export const financialInsightsPrompt = (context: AIInsightsContext) => {
+  return `
+You are a smart and friendly financial coach.
+
+Your job is to analyze the user's financial trends and generate meaningful insights based on the provided data.
+
+The insights should feel personal, helpful, and data-driven.
+
+Financial Data:
+
+${JSON.stringify(context, null, 2)}
+
+📌 Guidelines:
+
+* Generate exactly 3 insights
+* Generate exactly 2 recommendations
+* Use actual numbers from the data whenever helpful
+* Mention significant spending increases or decreases
+* Mention major spending categories
+* Mention savings performance
+* Mention newly appearing categories when percentageChange is null
+* Keep descriptions short and practical
+* Avoid generic financial advice
+* Sound like a smart financial advisor, not a robot
+* Do not invent numbers
+* Keep each description under 25 words
+
+Return your response EXACTLY in this JSON format:
+
+{
+"insights": [
+{
+"title": "Insight title",
+"description": "Short personalized insight",
+"severity": "low"
+},
+{
+"title": "Insight title",
+"description": "Short personalized insight",
+"severity": "medium"
+},
+{
+"title": "Insight title",
+"description": "Short personalized insight",
+"severity": "high"
+}
+],
+"recommendations": [
+{
+"title": "Recommendation title",
+"description": "Short actionable recommendation"
+},
+{
+"title": "Recommendation title",
+"description": "Short actionable recommendation"
+}
+]
+}
+
+Example:
+
+{
+"insights": [
+{
+"title": "Strong Savings Performance",
+"description": "You saved 62% of your income this month.",
+"severity": "low"
+},
+{
+"title": "Electronics Dominated Spending",
+"description": "Electronics accounted for over 50% of expenses.",
+"severity": "medium"
+},
+{
+"title": "New Housing Expenses",
+"description": "Housing emerged as a significant new expense category.",
+"severity": "medium"
+}
+],
+"recommendations": [
+{
+"title": "Monitor Large Purchases",
+"description": "Large electronics purchases can affect monthly cash flow."
+},
+{
+"title": "Maintain Savings Momentum",
+"description": "Your current savings rate is excellent. Keep it consistent."
+}
+]
+}
+
+⚠️ Return ONLY valid JSON.
+Do not include markdown.
+Do not include explanations.
+Do not wrap the response in code blocks.
+`;
 };

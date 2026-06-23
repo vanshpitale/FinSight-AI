@@ -6,7 +6,6 @@ import cors from "cors";
 import passport from "passport";
 import { HTTPSTATUS } from "./config/http.config.js";
 import { errorHandler } from "./middlewares/errorHandler.middleware.js";
-import { BadRequestException } from "./utils/app-error.js";
 import { asyncHandler } from "./middlewares/asyncHandler.middleware.js";
 import connectDB from "./config/database.config.js";
 import authRoutes from "./routes/auth.route.js";
@@ -16,6 +15,7 @@ import transactionRoutes from "./routes/transaction.route.js";
 import { initializeCrons } from "./crons/index.js";
 import reportRoutes from "./routes/report.route.js";
 import analyticsRoute from "./routes/analytics.route.js";
+import insightsRoutes from "./routes/insights.route.js";
 
 const app = express();
 const BASE_PATH = Env.BASE_PATH;
@@ -43,6 +43,7 @@ app.use(`${BASE_PATH}/user`, passportAuthenticateJwt, userRoutes);
 app.use(`${BASE_PATH}/transaction`, passportAuthenticateJwt, transactionRoutes);
 app.use(`${BASE_PATH}/report`, passportAuthenticateJwt, reportRoutes);
 app.use(`${BASE_PATH}/analytics`, passportAuthenticateJwt, analyticsRoute);
+app.use(`${BASE_PATH}/insights`, passportAuthenticateJwt, insightsRoutes);
 
 app.use(errorHandler);
 
@@ -55,3 +56,5 @@ app.listen(Env.PORT, async () => {
 
     console.log(`Server is running on port ${Env.PORT} in ${Env.NODE_ENV} mode`);
 });
+
+// "dev": "ts-node-dev --files src/index.ts",

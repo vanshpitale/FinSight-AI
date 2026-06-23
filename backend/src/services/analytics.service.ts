@@ -194,9 +194,9 @@ export const summaryAnalyticsService = async (
             const currentBalance = availableBalance;
 
             percentageChange = {
-                income: calaulatePercentageChange(prevIncome, currentIncome),
-                expense: calaulatePercentageChange(prevExpense, currentExpense),
-                balance: calaulatePercentageChange(prevBalance, currentBalance),
+                income: calculatePercentageChange(prevIncome, currentIncome),
+                expense: calculatePercentageChange(prevExpense, currentExpense),
+                balance: calculatePercentageChange(prevBalance, currentBalance),
                 prevPeriodFrom: prevPeriodFrom,
                 prevPeriodTo: prevPeriodTo,
                 previousValues: {
@@ -484,7 +484,7 @@ export const expensePieChartBreakdownService = async (
     };
 }
 
-function calaulatePercentageChange(previous: number, current: number) {
+function calculatePercentageChange(previous: number, current: number) {
     if (previous === 0) return current === 0 ? 0 : 100;
     const changes = ((current - previous) / Math.abs(previous)) * 100;
     const cappedChange = Math.min(Math.max(changes, -100), 100);
