@@ -125,18 +125,15 @@ Return your response EXACTLY in this JSON format:
 "insights": [
 {
 "title": "Insight title",
-"description": "Short personalized insight",
-"severity": "low"
+"description": "Short personalized insight",1
 },
 {
 "title": "Insight title",
 "description": "Short personalized insight",
-"severity": "medium"
 },
 {
 "title": "Insight title",
 "description": "Short personalized insight",
-"severity": "high"
 }
 ],
 "recommendations": [
@@ -158,17 +155,14 @@ Example:
 {
 "title": "Strong Savings Performance",
 "description": "You saved 62% of your income this month.",
-"severity": "low"
 },
 {
 "title": "Electronics Dominated Spending",
 "description": "Electronics accounted for over 50% of expenses.",
-"severity": "medium"
 },
 {
 "title": "New Housing Expenses",
 "description": "Housing emerged as a significant new expense category.",
-"severity": "medium"
 }
 ],
 "recommendations": [

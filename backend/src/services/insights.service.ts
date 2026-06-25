@@ -6,6 +6,9 @@ import { financialInsightsPrompt } from "../utils/prompt.js";
 import { genAI, genAIModel } from "../config/google-ai.config.js";
 import { createUserContent } from "@google/genai";
 import { formatCurrency } from "../utils/format-currency.js";
+import { format, isToday } from "date-fns";
+import FinancialInsightModel from "../models/insights.model.js";
+import { calculateFinancialHealthScore } from "../utils/health-score.js";
 
 export interface AIInsightsContext {
     summary: {
@@ -36,6 +39,20 @@ export interface AIInsightsContext {
 }
 
 export const getInsightsService = async (userId: string) => {
+    const period = format(new Date(), "yyyy-MM");
+
+    const cached = await FinancialInsightModel.findOne({
+        userId,
+        period
+    });
+
+    if (cached && isToday(cached.generatedAt)) {
+        return {
+            insights: cached.insights,
+            recommendations: cached.recommendations,
+        };
+    }
+
     const thisMonth = getDateRange(DateRangeEnum.THIS_MONTH);
     const prevMonth = getDateRange(DateRangeEnum.LAST_MONTH);
 
@@ -71,6 +88,16 @@ export const getInsightsService = async (userId: string) => {
     );
 
     const topCategory = currentMetrics.categories[0];
+
+    const topCategoryShare = currentMetrics.totalExpense > 0 ? (topCategory.amount / currentMetrics.totalExpense) * 100 : 0;
+
+    const healthScore = calculateFinancialHealthScore({
+        savingsRate: currentMetrics.savingsRate,
+        balance: currentMetrics.balance,
+        totalExpense: currentMetrics.totalExpense,
+        transactionCount: currentMetrics.transactionCount,
+        topCategoryShare,
+    });
 
     const aiContext = {
         summary: {
@@ -117,10 +144,31 @@ export const getInsightsService = async (userId: string) => {
             })),
     };
 
-    const insights = await generateFinancialInsightsAI(aiContext);
+    const { insights, recommendations } = await generateFinancialInsightsAI(aiContext);
+
+
+    if (insights.length > 0 && recommendations.length > 0 && healthScore) {
+        await FinancialInsightModel.findOneAndUpdate(
+            {
+                userId,
+                period,
+            },
+            {
+                healthScore,
+                insights,
+                recommendations,
+                generatedAt: new Date(),
+            },
+            {
+                upsert: true,
+            }
+        );
+    }
 
     return {
-        ...insights,
+        healthScore,
+        insights,
+        recommendations
     }
 }
 

@@ -10,17 +10,22 @@ export interface Recommendation {
     description: string;
 }
 
-// Uncomment when you implement Financial Health Score
-// export interface HealthScore {
-//     score: number;
-//     grade: string;
-// }
+export interface HealthScore {
+    score: number;
+    grade: string;
+    breakdown: {
+        savingHabits: number;
+        cashFlow: number;
+        spendingBalance: number;
+        financialDiscipline: number;
+    };
+}
 
 export interface FinancialInsightDocument extends mongoose.Document {
     userId: mongoose.Types.ObjectId;
     period: string;
 
-    // healthScore?: HealthScore;
+    healthScore: HealthScore;
 
     insights: Insight[];
     recommendations: Recommendation[];
@@ -29,6 +34,15 @@ export interface FinancialInsightDocument extends mongoose.Document {
 
     createdAt: Date;
     updatedAt: Date;
+}
+
+export enum FinancialGradeEnum {
+    A_PLUS = "A+",
+    A = "A",
+    B = "B",
+    C = "C",
+    D = "D",
+    F = "F",
 }
 
 const insightSchema = new mongoose.Schema(
@@ -67,6 +81,40 @@ const recommendationSchema = new mongoose.Schema(
     }
 );
 
+const healthScoreSchema = new mongoose.Schema(
+    {
+        score: {
+            type: Number,
+            required: true,
+        },
+        grade: {
+            type: String,
+            required: true,
+        },
+        breakdown: {
+            savingHabits: {
+                type: Number,
+                required: true,
+            },
+            cashFlow: {
+                type: Number,
+                required: true,
+            },
+            spendingBalance: {
+                type: Number,
+                required: true,
+            },
+            financialDiscipline: {
+                type: Number,
+                required: true,
+            },
+        },
+    },
+    {
+        _id: false,
+    }
+);
+
 const financialInsightSchema =
     new mongoose.Schema<FinancialInsightDocument>(
         {
@@ -82,17 +130,10 @@ const financialInsightSchema =
                 trim: true,
             },
 
-            // Uncomment when implementing Financial Health Score
-            // healthScore: {
-            //     score: {
-            //         type: Number,
-            //         required: true,
-            //     },
-            //     grade: {
-            //         type: String,
-            //         required: true,
-            //     },
-            // },
+            healthScore: {
+                type: healthScoreSchema,
+                required: true,
+            },
 
             insights: {
                 type: [insightSchema],
