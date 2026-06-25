@@ -4,11 +4,14 @@ import PageLayout from "@/components/page-layout";
 //import ExpenseBreakDown from "./expense-breakdown";
 import ExpensePieChart from "./expense-pie-chart";
 import DashboardRecentTransactions from "./dashboard-recent-transactions";
+import AIInsightsCard from "./ai-insights-card";
+import { useGetAIInsightsQuery } from "@/features/insights/insightsAPI";
 import { useState } from "react";
 import { DateRangeType } from "@/components/date-range-select";
 
 const Dashboard = () => {
   const [dateRange, _setDateRange] = useState<DateRangeType>(null);
+  const { data: insightsData, isFetching: insightsLoading } = useGetAIInsightsQuery();
 
   return (
     <div className="w-full flex flex-col">
@@ -22,6 +25,14 @@ const Dashboard = () => {
           <div className="lg:col-span-2">
             <ExpensePieChart dateRange={dateRange} />
           </div>
+        </div>
+        {/* AI Financial Insights */}
+        <div className="w-full">
+          <AIInsightsCard
+            insights={insightsData?.insights}
+            recommendations={insightsData?.recommendations}
+            isLoading={insightsLoading}
+          />
         </div>
         {/* Dashboard Recent Transactions */}
         <div className="w-full mt-0">
