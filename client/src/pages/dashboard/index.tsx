@@ -1,17 +1,17 @@
 import DashboardDataChart from "./dashboard-data-chart";
 import DashboardSummary from "./dashboard-summary";
 import PageLayout from "@/components/page-layout";
-//import ExpenseBreakDown from "./expense-breakdown";
 import ExpensePieChart from "./expense-pie-chart";
 import DashboardRecentTransactions from "./dashboard-recent-transactions";
 import AIInsightsCard from "./ai-insights-card";
+import { FinancialHealthScoreCard } from "./_component/financial-health-score";
 import { useGetAIInsightsQuery } from "@/features/insights/insightsAPI";
 import { useState } from "react";
 import { DateRangeType } from "@/components/date-range-select";
 
 const Dashboard = () => {
   const [dateRange, _setDateRange] = useState<DateRangeType>(null);
-  const { data: insightsData, isFetching: insightsLoading } = useGetAIInsightsQuery();
+  const { data: insightsData, isFetching: insightsLoading, isError, refetch } = useGetAIInsightsQuery();
 
   return (
     <div className="w-full flex flex-col">
@@ -26,14 +26,28 @@ const Dashboard = () => {
             <ExpensePieChart dateRange={dateRange} />
           </div>
         </div>
-        {/* AI Financial Insights */}
-        <div className="w-full">
-          <AIInsightsCard
-            insights={insightsData?.insights}
-            recommendations={insightsData?.recommendations}
-            isLoading={insightsLoading}
-          />
+
+        {/* AI Financial Insights & Health Score */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-6 gap-8">
+          <div className="lg:col-span-2">
+            <FinancialHealthScoreCard
+              score={insightsData?.healthScore?.score}
+              grade={insightsData?.healthScore?.grade}
+              breakdown={insightsData?.healthScore?.breakdown}
+              isLoading={insightsLoading}
+              isError={isError}
+              onRetry={refetch}
+            />
+          </div>
+          <div className="lg:col-span-4">
+            <AIInsightsCard
+              insights={insightsData?.insights}
+              recommendations={insightsData?.recommendations}
+              isLoading={insightsLoading}
+            />
+          </div>
         </div>
+
         {/* Dashboard Recent Transactions */}
         <div className="w-full mt-0">
           <DashboardRecentTransactions />

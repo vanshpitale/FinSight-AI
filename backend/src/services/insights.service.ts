@@ -48,6 +48,7 @@ export const getInsightsService = async (userId: string) => {
 
     if (cached && isToday(cached.generatedAt)) {
         return {
+            healthScore: cached.healthScore,
             insights: cached.insights,
             recommendations: cached.recommendations,
         };

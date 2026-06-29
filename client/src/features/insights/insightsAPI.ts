@@ -11,10 +11,22 @@ export interface RecommendationItem {
   description: string;
 }
 
+export interface HealthScore {
+  score: number;
+  grade: string;
+  breakdown: {
+    savingHabits: number;
+    cashFlow: number;
+    spendingBalance: number;
+    financialDiscipline: number;
+  };
+}
+
 export interface InsightsResponse {
   message: string;
   insights: InsightItem[];
   recommendations: RecommendationItem[];
+  healthScore?: HealthScore;
 }
 
 export const insightsApi = apiClient.injectEndpoints({
