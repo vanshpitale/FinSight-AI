@@ -122,64 +122,69 @@ ${JSON.stringify(context, null, 2)}
 Return your response EXACTLY in this JSON format:
 
 {
-"insights": [
-{
-"title": "Insight title",
-"description": "Short personalized insight",1
-},
-{
-"title": "Insight title",
-"description": "Short personalized insight",
-},
-{
-"title": "Insight title",
-"description": "Short personalized insight",
-}
-],
-"recommendations": [
-{
-"title": "Recommendation title",
-"description": "Short actionable recommendation"
-},
-{
-"title": "Recommendation title",
-"description": "Short actionable recommendation"
-}
-]
+  "insights": [
+    {
+      "title": "Insight title",
+      "description": "Short personalized insight"
+    },
+    {
+      "title": "Insight title",
+      "description": "Short personalized insight"
+    },
+    {
+      "title": "Insight title",
+      "description": "Short personalized insight"
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Recommendation title",
+      "description": "Short actionable recommendation"
+    },
+    {
+      "title": "Recommendation title",
+      "description": "Short actionable recommendation"
+    }
+  ]
 }
 
 Example:
 
 {
-"insights": [
-{
-"title": "Strong Savings Performance",
-"description": "You saved 62% of your income this month.",
-},
-{
-"title": "Electronics Dominated Spending",
-"description": "Electronics accounted for over 50% of expenses.",
-},
-{
-"title": "New Housing Expenses",
-"description": "Housing emerged as a significant new expense category.",
-}
-],
-"recommendations": [
-{
-"title": "Monitor Large Purchases",
-"description": "Large electronics purchases can affect monthly cash flow."
-},
-{
-"title": "Maintain Savings Momentum",
-"description": "Your current savings rate is excellent. Keep it consistent."
-}
-]
+  "insights": [
+    {
+      "title": "Strong Savings Performance",
+      "description": "You saved 62% of your income this month."
+    },
+    {
+      "title": "Electronics Dominated Spending",
+      "description": "Electronics accounted for over 50% of expenses."
+    },
+    {
+      "title": "New Housing Expenses",
+      "description": "Housing emerged as a significant new expense category."
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "Monitor Large Purchases",
+      "description": "Large electronics purchases can affect monthly cash flow."
+    },
+    {
+      "title": "Maintain Savings Momentum",
+      "description": "Your current savings rate is excellent. Keep it consistent."
+    }
+  ]
 }
 
-⚠️ Return ONLY valid JSON.
-Do not include markdown.
-Do not include explanations.
-Do not wrap the response in code blocks.
+Rules:
+- Return ONLY valid JSON.
+- Every property name must be enclosed in double quotes.
+- Do not use trailing commas.
+- Do not include comments.
+- Do not include markdown.
+- Do not include explanations.
+- The response must be directly parseable using JSON.parse().
+- Do not wrap the response in code blocks.
 `;
 };
