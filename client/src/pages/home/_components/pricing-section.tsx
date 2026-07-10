@@ -93,8 +93,8 @@ export default function PricingSection() {
             <button
               onClick={() => setBillingPeriod("monthly")}
               className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${billingPeriod === "monthly"
-                  ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
-                  : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
+                : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
             >
               Monthly
@@ -102,8 +102,8 @@ export default function PricingSection() {
             <button
               onClick={() => setBillingPeriod("yearly")}
               className={`px-5 py-2 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${billingPeriod === "yearly"
-                  ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
-                  : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                ? "bg-secondary-base text-white shadow-lg shadow-secondary-base/20"
+                : "text-slate-550 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 }`}
             >
               Yearly

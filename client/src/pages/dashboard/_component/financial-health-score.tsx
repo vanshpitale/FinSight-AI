@@ -38,6 +38,8 @@ const getScoreColorConfig = (score: number) => {
       border: "border-emerald-500/20 dark:border-emerald-500/30",
       progress: "stroke-emerald-500 dark:stroke-emerald-400",
       track: "stroke-emerald-100 dark:stroke-emerald-950/40",
+
+
       bar: "bg-emerald-500 dark:bg-emerald-400",
       badge: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/30",
       summaryBg: "from-emerald-500/5 to-transparent",
@@ -115,7 +117,7 @@ const generateDynamicSummary = (score: number, breakdown?: FinancialHealthScoreP
   }
 
   const { savingHabits, cashFlow, spendingBalance, financialDiscipline } = breakdown;
-  
+
   // Specific match for user requirement mock data
   if (score === 85 && savingHabits === 40 && cashFlow === 25 && spendingBalance === 5 && financialDiscipline === 15) {
     return "Your financial health is excellent thanks to strong savings habits and positive cash flow. Most of your score deduction comes from a high concentration of spending in electronics.";
@@ -213,7 +215,7 @@ export const FinancialHealthScoreCard: React.FC<FinancialHealthScoreProps> = ({
           <div className="flex flex-col items-center justify-center py-4 relative">
             {/* Animated Glow Backing */}
             <div className={cn("absolute size-28 rounded-full blur-2xl opacity-20 dark:opacity-30 -z-10 animate-pulse duration-[4000ms]", colors.glow)} />
-            
+
             <div className="relative size-32 flex items-center justify-center">
               {/* Radial Gauge SVG */}
               <svg className="size-full absolute top-0 left-0 -rotate-90">
@@ -274,7 +276,7 @@ export const FinancialHealthScoreCard: React.FC<FinancialHealthScoreProps> = ({
               <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground/80">
                 Score Breakdown
               </h3>
-              
+
               <div className="space-y-3">
                 {/* Saving Habits */}
                 <div className="space-y-1">
